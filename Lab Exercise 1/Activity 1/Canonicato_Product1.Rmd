@@ -52,12 +52,12 @@ BagNoOFReviews1 <- BagNoOFReviews1[1:25]
 BagNoOFReviews1
 
 
-bag_data <- rbind (bag_data,data.frame
-  (Name = BagName1,
+bag_data <- data.frame(
+  Name = BagName1,
   Price = BagPrice1,
   Ratings = BagRatings1,
   No_of_Reviews = BagNoOFReviews1
-))
+)
 
 View(bag_data)
 
