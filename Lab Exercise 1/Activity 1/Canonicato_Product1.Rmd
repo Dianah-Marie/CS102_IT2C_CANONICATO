@@ -1,0 +1,116 @@
+---
+title: "Lab Exercise 1"
+author: "Dianah Marie Canonicato"
+date: "2024-02-09"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+install.packages("dplyr")
+install.packages("rvest")
+install.packages("httr")
+install.packages("polite")
+
+```{r}
+library(polite)
+library(rvest)
+library(httr)
+library(dplyr)
+
+##Permission
+BagLink1 <- "https://www.amazon.co.uk/s?k=bag&crid=3PO05N0ZNKL8W&sprefix=ba%2Caps%2C379&ref=nb_sb_noss_2"
+session1 <- bow(BagLink1, user_agent = "Educational Purposes")
+session1 <- scrape(session1)  
+
+BagName1 <- session1 %>%
+  html_nodes(".s-featured-result-item h2, .s-widget-container > span h2") %>%
+  html_text()
+BagName1 <- BagName1[1:25]
+BagName1
+
+
+BagPrice1 <- session1 %>%
+  html_nodes(".s-featured-result-item .a-size-base div.a-row:nth-of-type(1), div:nth-of-type(n+7) .s-widget-container > span .a-size-base div.a-row:nth-of-type(1)") %>%
+  html_text()
+BagPrice1 <- BagPrice1[1:25]
+BagPrice1
+
+
+BagRatings1 <- session1 %>%
+html_nodes (".s-featured-result-item span.a-icon-alt, .s-widget-container > span span.a-icon-alt") %>%
+html_text()
+BagRatings1 <- BagRatings1[1:25]
+BagRatings1
+
+
+BagNoOFReviews1 <- session1 %>%
+html_nodes (".s-featured-result-item span.s-underline-text, .s-widget-container > span span.s-underline-text")%>%
+html_text()
+BagNoOFReviews1 <- BagNoOFReviews1[1:25]
+BagNoOFReviews1
+
+
+bag_data <- rbind (bag_data,data.frame
+  (Name = BagName1,
+  Price = BagPrice1,
+  Ratings = BagRatings1,
+  No_of_Reviews = BagNoOFReviews1
+))
+
+View(bag_data)
+
+```
+
+```{r}
+
+#2nd
+
+firstbagLink <-"https://www.amazon.co.uk/TARION-Photography-Compartment-Professional-Waterproof/dp/B07WS9F4CH/ref=sr_1_1_sspa?crid=3PO05N0ZNKL8W&keywords=bag&qid=1707491568&sprefix=ba%2Caps%2C379&sr=8-1-spons&sp_csd=d2lkZ2V0TmFtZT1zcF9hdGY&th=1"
+
+session2 <- bow(firstbagLink, user_agent = "Educational Purposes")
+session2 <- scrape(session2)  
+
+BagReviewer1 <- session2 %>%
+html_nodes (".a-row[data-hook] a span, .a-spacing-mini div.a-profile span")%>%
+html_text()
+BagReviewer1 <- BagReviewer1[1:5]
+BagReviewer1
+
+BagDateReview1  <- session2 %>%
+html_nodes(".a-row .a-section span.a-size-base.a-color-secondary")%>% 
+html_text()
+BagDateReview1 <- BagDateReview1[1:5] 
+BagDateReview1
+
+BagIndRate1 <- session2 %>%
+html_nodes (".a-size-base .review-rating span") %>%
+html_text()
+BagIndRate1 <- BagIndRate1 [1:5]
+BagIndRate1
+
+BagReviews1 <- session2 %>%
+html_nodes (".a-size-base.a-link-normal span:nth-of-type(2)") %>%
+html_text()  
+BagReviews1 <- BagReviews1 [1:5]
+BagReviews1
+
+
+first_bag <- data.frame(
+  Reviewer = BagReviewer1,
+  Date = BagDateReview1,
+  Rating = BagIndRate1,
+  Review = BagReviews1
+)
+
+View(first_bag)
+
+
+
+
+
+
+
+
+```
