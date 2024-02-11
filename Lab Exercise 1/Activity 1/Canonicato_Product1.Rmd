@@ -24,27 +24,28 @@ BagLink1 <- "https://www.amazon.co.uk/s?k=bag&crid=3PO05N0ZNKL8W&sprefix=ba%2Cap
 session1 <- bow(BagLink1, user_agent = "Educational Purposes")
 session1 <- scrape(session1)  
 
+#Name
 BagName1 <- session1 %>%
-  html_nodes(".s-featured-result-item h2, .s-widget-container > span h2") %>%
-  html_text()
+html_nodes(".s-featured-result-item h2, .s-widget-container > span h2") %>%
+html_text()
 BagName1 <- BagName1[1:25]
 BagName1
 
-
+#Price
 BagPrice1 <- session1 %>%
   html_nodes(".s-featured-result-item .a-size-base div.a-row:nth-of-type(1), div:nth-of-type(n+7) .s-widget-container > span .a-size-base div.a-row:nth-of-type(1)") %>%
   html_text()
 BagPrice1 <- BagPrice1[1:25]
 BagPrice1
 
-
+#Ratings
 BagRatings1 <- session1 %>%
 html_nodes (".s-featured-result-item span.a-icon-alt, .s-widget-container > span span.a-icon-alt") %>%
 html_text()
 BagRatings1 <- BagRatings1[1:25]
 BagRatings1
 
-
+#Number of Reviews
 BagNoOFReviews1 <- session1 %>%
 html_nodes (".s-featured-result-item span.s-underline-text, .s-widget-container > span span.s-underline-text")%>%
 html_text()
@@ -60,6 +61,9 @@ bag_data <- data.frame(
 )
 
 View(bag_data)
+
+
+
 
 ```
 
@@ -106,11 +110,380 @@ first_bag <- data.frame(
 
 View(first_bag)
 
+```
+
+```{r}
+#3rd
+
+secondbagLink <-"https://www.amazon.co.uk/Weekend-Overnight-Holdalls-Waterproof-Weekender/dp/B07Y52NVGD/ref=sr_1_8?crid=3PO05N0ZNKL8W&keywords=bag&qid=1707522137&sprefix=ba%2Caps%2C379&sr=8-8&th=1"
+
+session3 <- bow(secondbagLink, user_agent = "Educational Purposes")
+session3 <- scrape(session3)  
+
+BagReviewer2 <- session3 %>%
+html_nodes (".a-section.celwidget a span.a-profile-name, div.a-profile span")%>%
+html_text()
+BagReviewer2 <- BagReviewer2[1:10]
+BagReviewer2
+
+BagDateReview2  <- session3 %>%
+html_nodes("#cm-cr-dp-review-list span.a-size-base.a-color-secondary, .cr-desktop-review-page-0 span.a-size-base.a-color-secondary")%>% 
+html_text()
+BagDateReview2 <- BagDateReview2[1:10] 
+BagDateReview2
 
 
+BagIndRate2 <- session3 %>%
+html_nodes (".a-size-base span.a-icon-alt, .a-spacing-none .a-spacing-none .a-star-5 span") %>%
+html_text()
+BagIndRate2 <- BagIndRate2 [1:10]
+BagIndRate2
+
+BagReviews2 <- session3 %>%
+html_nodes (".a-size-base.a-link-normal span:nth-of-type(2), span.review-title span") %>%
+html_text()  
+BagReviews2 <- BagReviews2 [1:10]
+BagReviews2
 
 
+second_bag <- data.frame(
+  Reviewer = BagReviewer2,
+  Date = BagDateReview2,
+  IndividualRating = BagIndRate2,
+  Review = BagReviews2
+)
 
+View(second_bag)
+```
+
+```{r}
+#4th
+
+thirdbagLink <-"https://www.amazon.co.uk/Levis-Crossbody-Solid-Batwing-Black/dp/B08BLSXB8P/ref=sr_1_33?crid=3PO05N0ZNKL8W&keywords=bag&qid=1707522137&sprefix=ba%2Caps%2C379&sr=8-33"
+
+session4 <- bow(thirdbagLink, user_agent = "Educational Purposes")
+session4 <- scrape(session4)  
+
+BagReviewer3 <- session4 %>%
+html_nodes (".a-section.celwidget a span.a-profile-name, .a-row[data-hook] div .a-profile-content span")%>%
+html_text()
+BagReviewer3 <- BagReviewer3[1:10]
+BagReviewer3
+
+BagDateReview3 <- session4 %>%
+html_nodes ("#cm-cr-dp-review-list span.a-size-base.a-color-secondary, .cr-desktop-review-page-0 span.a-size-base.a-color-secondary")%>%
+html_text()
+BagDateReview3 <- BagDateReview3[1:10]
+BagDateReview3
+
+BagIndRate3 <- session4 %>%
+html_nodes (".a-size-base span.a-icon-alt, #customer_review-R3OVM1IUOD6L8A i.a-icon-star, .a-spacing-none .a-spacing-none span.a-icon-alt") %>%
+html_text()
+BagIndRate3 <- BagIndRate3 [1:10]
+BagIndRate3
+
+BagReviews3 <- session4 %>%
+html_nodes (".a-size-base.a-link-normal span:nth-of-type(2), span.review-title span:nth-of-type(1)") %>%
+html_text()  
+BagReviews3 <- BagReviews3 [1:10]
+BagReviews3
+
+third_bag <- data.frame(
+  Reviewer = BagReviewer3,
+  Date = BagDateReview3,
+  Rating = BagIndRate3,
+  Review = BagReviews3
+)
+
+View(third_bag)
+
+```
+
+```{r}
+#4th
+
+fourthbagLink <-"https://www.amazon.co.uk/PUMA-Unisex-Adult-Buzz-Backpack/dp/B00XZU9TSG/ref=sr_1_37?crid=3PO05N0ZNKL8W&keywords=bag&qid=1707522137&sprefix=ba%2Caps%2C379&sr=8-37&th=1"
+
+session5 <- bow(fourthbagLink, user_agent = "Educational Purposes")
+session5 <- scrape(session5)  
+
+BagReviewer4 <- session5 %>%
+html_nodes (".a-section.celwidget a span.a-profile-name, .a-spacing-mini div.a-profile span")%>%
+html_text()
+BagReviewer4 <- BagReviewer4[1:10]
+BagReviewer4
+
+BagDateReview4 <- session5 %>%
+html_nodes ("#cm-cr-dp-review-list span.a-size-base.a-color-secondary, .cr-desktop-review-page-0 span.a-size-base.a-color-secondary")%>%
+html_text()
+BagDateReview4 <- BagDateReview4[1:10]
+BagDateReview4
+
+BagIndRate4 <- session5 %>%
+html_nodes (".a-size-base span.a-icon-alt, .a-spacing-none .a-spacing-none span.a-icon-alt") %>%
+html_text()
+BagIndRate4 <- BagIndRate4 [1:10]
+BagIndRate4
+
+BagReviews4 <- session5 %>%
+html_nodes (".a-size-base.a-link-normal span:nth-of-type(2), span.review-title span:nth-of-type(1)") %>%
+html_text()  
+BagReviews4 <- BagReviews4 [1:10]
+BagReviews4
+
+fourth_bag <- data.frame(
+  Reviewer = BagReviewer4,
+  Date = BagDateReview4,
+  Rating = BagIndRate4,
+  Review = BagReviews4
+)
+
+View(fourth_bag)
 
 
 ```
+
+```{r}
+fifthbagLink <-"https://www.amazon.co.uk/dp/B09WCX38NB/ref=sspa_dk_detail_1?pd_rd_i=B09WCX38NB&pd_rd_w=LE2B4&content-id=amzn1.sym.84ea1bf1-65a8-4363-b8f5-f0df58cbb686&pf_rd_p=84ea1bf1-65a8-4363-b8f5-f0df58cbb686&pf_rd_r=CAGWJRZ2Z5D52Q6J1DKT&pd_rd_wg=Z0Sn9&pd_rd_r=6f8f3393-0acc-4c50-a2a4-5e0814941c0f&s=clothing&sp_csd=d2lkZ2V0TmFtZT1zcF9kZXRhaWw&th=1"
+
+session6 <- bow(fifthbagLink, user_agent = "Educational Purposes")
+session6 <- scrape(session6)  
+
+BagReviewer5 <- session6 %>%
+html_nodes (".a-section.celwidget a span.a-profile-name, div.a-profile span, #customer_review_foreign-R21BZCUXD9PIHQ div.a-profile-content")%>%
+html_text()
+BagReviewer5  <- BagReviewer5 [1:10]
+BagReviewer5 
+
+BagDateReview5 <- session6 %>%
+html_nodes ("#cm-cr-dp-review-list span.a-size-base.a-color-secondary, .cr-desktop-review-page-0 span.a-size-base.a-color-secondary")%>%
+html_text()
+BagDateReview5  <- BagDateReview5 [1:10]
+BagDateReview5 
+
+BagIndRate5 <- session6 %>%
+html_nodes (".a-size-base .review-rating span, .a-spacing-none .a-spacing-none span.a-icon-alt") %>%
+html_text()
+BagIndRate5  <- BagIndRate5  [1:10]
+BagIndRate5 
+
+BagReviews5 <- session6 %>%
+html_nodes (".a-size-base.a-link-normal span:nth-of-type(2), .review-title span.cr-original-review-content") %>%
+html_text()  
+BagReviews5 <- BagReviews5 [1:10]
+BagReviews5
+
+fifth_bag <- data.frame(
+  Reviewer = BagReviewer5,
+  Date = BagDateReview5,
+  Rating = BagIndRate5,
+  Review = BagReviews5
+)
+
+View(fifth_bag)
+```
+
+```{r}
+sixbagLink <-"https://www.amazon.co.uk/Lenovo-GX40Q17229-Toploader-T210/dp/B075Y6Y9H5/ref=sr_1_37?crid=3PO05N0ZNKL8W&keywords=bag&qid=1707541123&sprefix=ba%2Caps%2C379&sr=8-37&th=1"
+
+session7 <- bow(sixbagLink, user_agent = "Educational Purposes")
+session7 <- scrape(session7)  
+
+BagReviewer6 <- session7 %>%
+html_nodes (".a-section.celwidget a span.a-profile-name, .a-spacing-mini div.a-profile span")%>%
+html_text()
+BagReviewer6  <- BagReviewer6 [1:10]
+BagReviewer6 
+
+BagDateReview6 <- session7 %>%
+html_nodes ("#cm-cr-dp-review-list span.a-size-base.a-color-secondary, .cr-desktop-review-page-0 span.a-size-base.a-color-secondary")%>%
+html_text()
+BagDateReview6  <- BagDateReview6 [1:10]
+BagDateReview6 
+
+BagIndRate6 <- session7 %>%
+html_nodes ("div.a-section:nth-of-type(n+4) .a-section .a-spacing-none span.a-icon-alt, .a-size-base span.a-icon-alt") %>%
+html_text()
+BagIndRate6  <- BagIndRate6  [1:10]
+BagIndRate6
+
+BagReviews6 <- session7 %>%
+html_nodes (".a-link-normal.review-title span:nth-of-type(2), span.review-title span:nth-of-type(1)") %>%
+html_text()  
+BagReviews6 <- BagReviews6 [1:10]
+BagReviews6
+
+
+sixth_bag <- data.frame(
+  Reviewer = BagReviewer6,
+  Date = BagDateReview6,
+  IndividualRating = BagIndRate6,
+  Review = BagReviews6
+)
+
+View(sixth_bag)
+
+```
+
+```{r}
+sevenbagLink <-"https://www.amazon.co.uk/Kipling-Asseni-Womens-33x21x14-Centimeters/dp/B07TWSQRGK/ref=sr_1_27?crid=3PO05N0ZNKL8W&keywords=bag&qid=1707547903&sprefix=ba%2Caps%2C379&sr=8-27&th=1"
+
+session8 <- bow(sevenbagLink, user_agent = "Educational Purposes")
+session8 <- scrape(session8)  
+
+BagReviewer7 <- session8 %>%
+html_nodes (".a-section.celwidget a span.a-profile-name, .a-spacing-mini div.a-profile span")%>%
+html_text()
+BagReviewer7  <- BagReviewer7 [1:10]
+BagReviewer7
+
+BagDateReview7 <- session8 %>%
+html_nodes ("#cm-cr-dp-review-list span.a-size-base.a-color-secondary, .cr-desktop-review-page-0 span.a-size-base.a-color-secondary")%>%
+html_text()
+BagDateReview7  <- BagDateReview7 [1:10]
+BagDateReview7 
+
+BagIndRate7 <- session8 %>%
+html_nodes (".a-size-base span.a-icon-alt, .a-spacing-none .a-spacing-none span.a-icon-alt") %>%
+html_text()
+BagIndRate7  <- BagIndRate7  [1:10]
+BagIndRate7
+
+BagReviews7 <- session8 %>%
+html_nodes (".a-size-base.a-link-normal span:nth-of-type(2), .review-title span.cr-original-review-content") %>%
+html_text()  
+BagReviews7 <- BagReviews7 [1:10]
+BagReviews7
+
+seventh_bag <- data.frame(
+  Reviewer = BagReviewer7,
+  Date = BagDateReview7,
+  IndividualRating = BagIndRate7,
+  Review = BagReviews7
+)
+
+View(seventh_bag)
+
+```
+
+```{r}
+eightbagLink <-"https://www.amazon.co.uk/LEVIS-FOOTWEAR-ACCESSORIES-Batwing-30x14x39/dp/B077GVXZV4/ref=sr_1_45?crid=3PO05N0ZNKL8W&keywords=bag&qid=1707547903&sprefix=ba%2Caps%2C379&sr=8-45&th=1"
+
+session9 <- bow(eightbagLink, user_agent = "Educational Purposes")
+session9 <- scrape(session9)  
+
+BagReviewer8 <- session9 %>%
+html_nodes (".a-row[data-hook] a span, div.a-section:nth-of-type(n+2) .a-row[data-hook] div .a-profile-content span")%>%
+html_text()
+BagReviewer8  <- BagReviewer8 [1:10]
+BagReviewer8
+
+BagDateReview8 <- session9 %>%
+html_nodes ("#cm-cr-dp-review-list span.a-size-base.a-color-secondary, .cr-desktop-review-page-0 span.a-size-base.a-color-secondary")%>%
+html_text()
+BagDateReview8   <- BagDateReview8 [1:10]
+BagDateReview8 
+
+BagIndRate8 <- session9 %>%
+html_nodes (".a-size-base span.a-icon-alt, .a-spacing-none .a-spacing-none span.a-icon-alt") %>%
+html_text()
+BagIndRate8  <- BagIndRate8  [1:10]
+BagIndRate8
+
+BagReviews8 <- session9 %>%
+html_nodes (".a-size-base.a-link-normal span:nth-of-type(2), span.review-title span:nth-of-type(1)") %>%
+html_text()  
+BagReviews8 <- BagReviews8 [1:10]
+BagReviews8
+
+
+eighth_bag <- data.frame(
+  Reviewer = BagReviewer8,
+  Date = BagDateReview8,
+  IndividualRating = BagIndRate8,
+  Review = BagReviews8
+)
+
+View(eighth_bag)
+```
+
+```{r}
+ninebagLink <-"https://www.amazon.co.uk/Kipling-Gabbie-Womens-Cross-Body-Active/dp/B07DKHD5P2/ref=sr_1_60?crid=3PO05N0ZNKL8W&keywords=bag&qid=1707547903&sprefix=ba%2Caps%2C379&sr=8-60&th=1"
+
+session10 <- bow(ninebagLink, user_agent = "Educational Purposes")
+session10 <- scrape(session10)  
+
+BagReviewer9 <- session10 %>%
+html_nodes ("#customer_review-R123M4HT0O8UO5 span.a-profile-name, div.review:nth-of-type(n+2) a div.a-profile-content, .a-spacing-mini div.a-profile span")%>%
+html_text()
+BagReviewer9  <- BagReviewer9 [1:10]
+BagReviewer9
+
+BagDateReview9 <- session10 %>%
+html_nodes ("#cm-cr-dp-review-list span.a-size-base.a-color-secondary, .cr-desktop-review-page-0 span.a-size-base.a-color-secondary")%>%
+html_text()
+BagDateReview9   <- BagDateReview9 [1:10]
+BagDateReview9 
+
+BagIndRate9 <- session10 %>%
+html_nodes (".a-size-base span.a-icon-alt, .a-spacing-none .a-spacing-none span.a-icon-alt") %>%
+html_text()
+BagIndRate9  <- BagIndRate9  [1:10]
+BagIndRate9
+
+BagReviews9 <- session10 %>%
+html_nodes (".a-size-base.a-link-normal span:nth-of-type(2), span.review-title span:nth-of-type(1)") %>%
+html_text()  
+BagReviews9 <- BagReviews9 [1:10]
+BagReviews9
+
+ninth_bag <- data.frame(
+  Reviewer = BagReviewer9,
+  Date = BagDateReview9,
+  IndividualRating = BagIndRate9,
+  Review = BagReviews9
+)
+
+View(ninth_bag)
+```
+
+```{r}
+tenbagLink <-"https://www.amazon.co.uk/Michael-Kors-Crossbody-Signature-49S2CRHS1B/dp/B0B9CC5D5Q/ref=sr_1_55?crid=3PO05N0ZNKL8W&keywords=bag&qid=1707550465&sprefix=ba%2Caps%2C379&sr=8-55&th=1"
+
+session11 <- bow(tenbagLink, user_agent = "Educational Purposes")
+session11 <- scrape(session11)  
+
+BagReviewer10 <- session11 %>%
+html_nodes (".a-row[data-hook] a span, div.a-profile span")%>%
+html_text()
+BagReviewer10  <- BagReviewer10 [1:10]
+BagReviewer10
+
+BagDateReview10 <- session11 %>%
+html_nodes ("#cm-cr-dp-review-list span.a-size-base.a-color-secondary, .cr-desktop-review-page-0 span.a-size-base.a-color-secondary")%>%
+html_text()
+BagDateReview10   <- BagDateReview10 [1:10]
+BagDateReview10 
+
+BagIndRate10 <- session11 %>%
+html_nodes (".a-size-base span.a-icon-alt, .a-spacing-none .a-spacing-none span.a-icon-alt") %>%
+html_text()
+BagIndRate10  <- BagIndRate10  [1:10]
+BagIndRate10
+
+BagReviews10 <- session11 %>%
+html_nodes (".a-size-base.a-link-normal span:nth-of-type(2), span.review-title span:nth-of-type(1)") %>%
+html_text()  
+BagReviews10 <- BagReviews10 [1:10]
+BagReviews10
+
+
+tenth_bag <- data.frame(
+  Reviewer = BagReviewer10,
+  Date = BagDateReview10,
+  IndividualRating = BagIndRate10,
+  Review = BagReviews10
+)
+
+View(tenth_bag)
+````
