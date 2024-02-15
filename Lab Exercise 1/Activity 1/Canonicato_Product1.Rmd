@@ -20,9 +20,9 @@ library(httr)
 library(dplyr)
 
 ##Permission
-BagLink1 <- "https://www.amazon.co.uk/s?k=bag&crid=3PO05N0ZNKL8W&sprefix=ba%2Caps%2C379&ref=nb_sb_noss_2"
+BagLink1 <- "https://www.amazon.co.uk/s?k=bag&crid=3PO05N0ZNKL8W&sprefix=ba%2Caps%2C379&ref=nb_sb_noss_1"
 session1 <- bow(BagLink1, user_agent = "Educational Purposes")
-session1 <- scrape(session1)  
+session1 <- scrape(session1)
 
 #Name
 BagName1 <- session1 %>%
@@ -62,6 +62,141 @@ bag_data <- data.frame(
 
 View(bag_data)
 
+
+### Butang d ang link ka another page gin pang islan ko nani var ya ang mga links nalang butang
+
+BagLink2 <- "https://www.amazon.co.uk/s?k=bag&page=2&crid=3PO05N0ZNKL8W&qid=1707610316&sprefix=ba%2Caps%2C379&ref=sr_pg_2"
+
+session2.1 <- bow(BagLink2, user_agent = "Educational Purposes")
+session2.1 <- scrape(session2.1)  
+
+#Name
+BagName2 <- session2.1 %>%
+  html_nodes(".s-featured-result-item h2, div:nth-of-type(n+5) .rush-component span.a-size-base-plus, .s-widget-container > span div:nth-of-type(2) span.a-size-base-plus, div:nth-of-type(n+16) .s-widget-container > span div:nth-of-type(2) .a-spacing-top-small h2") %>%
+  html_text()
+BagName2 <- BagName2[1:25]
+BagName2
+
+#Price
+BagPrice2 <- session2.1 %>%
+  html_nodes(".s-featured-result-item .a-size-base div:nth-of-type(1), .s-widget-container > span div.a-section:nth-of-type(n+2) .a-color-base div.a-row:nth-of-type(1)") %>%
+  html_text()
+BagPrice2 <- BagPrice2[1:25]
+BagPrice2
+
+#Ratings
+BagRatings2 <- session2.1 %>%
+html_nodes (".s-featured-result-item span.a-icon-alt, .s-widget-container > span div.a-section:nth-of-type(n+2) .a-section span.a-icon-alt") %>%
+html_text()
+BagRatings2 <- BagRatings2[1:25]
+BagRatings2
+
+#Number of Reviews
+BagNoOFReviews2 <- session2.1 %>%
+html_nodes (".s-featured-result-item span.s-underline-text, .s-widget-container > span div.a-section:nth-of-type(n+2) .a-section span.s-underline-text")%>%
+html_text()
+BagNoOFReviews2 <- BagNoOFReviews2[1:25]
+BagNoOFReviews2
+
+
+bag_data2 <- data.frame(
+  Name = BagName2,
+  Price = BagPrice2,
+  Ratings = BagRatings2,
+  No_of_Reviews = BagNoOFReviews2
+)
+
+View(bag_data2)
+
+###Another page naman diri liwat2 malang na isli lang mga numbers para ma chindihan kung diin asta maka apat ka nga sulit2
+
+### Butang d ang link ka another page gin pang islan ko nani var ya ang mga links nalang butang
+
+BagLink3 <- "https://www.amazon.co.uk/s?k=bag&page=3&crid=3PO05N0ZNKL8W&qid=1707612635&sprefix=ba%2Caps%2C379&ref=sr_pg_3"
+session3.1 <- bow(BagLink3, user_agent = "Educational Purposes")
+session3.1 <- scrape(session3.1)  
+
+#Name
+BagName3 <-session3.1 %>%
+html_nodes(".s-widget-container > span span.a-size-base-plus, div:nth-of-type(n+8) .s-widget-container > span h2, div:nth-of-type(n+12) .rush-component span.a-size-base-plus") %>%
+html_text()
+BagName3 <- BagName3[1:25]
+BagName3
+
+#Price
+BagPrice3 <- session3.1 %>%
+  html_nodes(".s-widget-container > span .a-color-base div.a-row:nth-of-type(1), div:nth-of-type(n+57) div:nth-of-type(3) .a-row div.a-row:nth-of-type(1)") %>%
+  html_text()
+BagPrice3 <- BagPrice3[1:25]
+BagPrice3
+
+#Ratings
+BagRatings3 <- session3.1 %>%
+html_nodes (".s-widget-container > span span.a-icon-alt, div:nth-of-type(n+12) .rush-component span.a-icon-alt") %>%
+html_text()
+BagRatings3 <- BagRatings3[1:25]
+BagRatings3
+
+#Number of Reviews
+BagNoOFReviews3 <- session3.1 %>%
+html_nodes (".s-widget-container > span span.s-underline-text, div:nth-of-type(n+12) .rush-component span.s-underline-text")%>%
+html_text()
+BagNoOFReviews3 <- BagNoOFReviews3[1:25]
+BagNoOFReviews3
+
+
+bag_data3 <- data.frame(
+  Name = BagName3,
+  Price = BagPrice3,
+  Ratings = BagRatings3,
+  No_of_Reviews = BagNoOFReviews3
+)
+
+View(bag_data3)
+
+
+##
+BagLink4 <- "https://www.amazon.co.uk/s?k=bag&page=6&crid=3PO05N0ZNKL8W&qid=1707960446&sprefix=ba%2Caps%2C379&ref=sr_pg_6"
+session4.1 <- bow(BagLink4, user_agent = "Educational Purposes")
+session4.1 <- scrape(session4.1)  
+
+#Name
+BagName4 <-session4.1 %>%
+html_nodes(".s-featured-result-item span.a-size-base-plus, div:nth-of-type(n+3) span.a-size-base-plus, div:nth-of-type(n+4) div:nth-of-type(2) h2.s-line-clamp-4") %>%
+html_text()
+BagName4 <- BagName4[1:25]
+BagName4
+
+#Price
+BagPrice4 <- session4.1 %>%
+  html_nodes(".s-featured-result-item .a-size-base div:nth-of-type(1), div:nth-of-type(n+4) .a-color-base div.a-row:nth-of-type(1)") %>%
+  html_text()
+BagPrice4 <- BagPrice4[1:25]
+BagPrice4
+
+#Ratings
+BagRatings4 <- session4.1 %>%
+html_nodes (".aok-align-bottom span") %>%
+html_text()
+BagRatings4 <- BagRatings4[1:25]
+BagRatings4
+
+#Number of Reviews
+BagNoOFReviews4 <- session4.1 %>%
+html_nodes ("span.s-underline-text")%>%
+html_text()
+BagNoOFReviews4 <- BagNoOFReviews4[1:25]
+BagNoOFReviews4
+
+
+bag_data4 <- data.frame(
+  Name = BagName4,
+  Price = BagPrice4,
+  Ratings = BagRatings4,
+  No_of_Reviews = BagNoOFReviews4
+)
+
+View(bag_data4)
 
 
 
