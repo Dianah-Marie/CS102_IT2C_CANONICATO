@@ -2,7 +2,9 @@
 title: "Lab Exercise 1"
 author: "Dianah Marie Canonicato"
 date: "2024-02-09"
-output: pdf_document
+output: 
+  pdf_document:
+    latex_engine: xelatex
 ---
 
 ```{r setup, include=FALSE}
@@ -60,10 +62,10 @@ bag_data <- data.frame(
   No_of_Reviews = BagNoOFReviews1
 )
 
-View(bag_data)
 
 
-### Butang d ang link ka another page gin pang islan ko nani var ya ang mga links nalang butang
+
+### 
 
 BagLink2 <- "https://www.amazon.co.uk/s?k=bag&page=2&crid=3PO05N0ZNKL8W&qid=1707610316&sprefix=ba%2Caps%2C379&ref=sr_pg_2"
 
@@ -106,11 +108,10 @@ bag_data2 <- data.frame(
   No_of_Reviews = BagNoOFReviews2
 )
 
-View(bag_data2)
 
-###Another page naman diri liwat2 malang na isli lang mga numbers para ma chindihan kung diin asta maka apat ka nga sulit2
 
-### Butang d ang link ka another page gin pang islan ko nani var ya ang mga links nalang butang
+###
+### 
 
 BagLink3 <- "https://www.amazon.co.uk/s?k=bag&page=3&crid=3PO05N0ZNKL8W&qid=1707612635&sprefix=ba%2Caps%2C379&ref=sr_pg_3"
 session3.1 <- bow(BagLink3, user_agent = "Educational Purposes")
@@ -152,7 +153,7 @@ bag_data3 <- data.frame(
   No_of_Reviews = BagNoOFReviews3
 )
 
-View(bag_data3)
+
 
 
 ##
@@ -196,7 +197,7 @@ bag_data4 <- data.frame(
   No_of_Reviews = BagNoOFReviews4
 )
 
-View(bag_data4)
+
 
 
 
@@ -243,7 +244,7 @@ first_bag <- data.frame(
   Review = BagReviews1
 )
 
-View(first_bag)
+
 
 ```
 
@@ -288,7 +289,7 @@ second_bag <- data.frame(
   Review = BagReviews2
 )
 
-View(second_bag)
+
 ```
 
 ```{r}
@@ -330,7 +331,7 @@ third_bag <- data.frame(
   Review = BagReviews3
 )
 
-View(third_bag)
+
 
 ```
 
@@ -373,7 +374,7 @@ fourth_bag <- data.frame(
   Review = BagReviews4
 )
 
-View(fourth_bag)
+
 
 
 ```
@@ -415,7 +416,7 @@ fifth_bag <- data.frame(
   Review = BagReviews5
 )
 
-View(fifth_bag)
+
 ```
 
 ```{r}
@@ -456,7 +457,7 @@ sixth_bag <- data.frame(
   Review = BagReviews6
 )
 
-View(sixth_bag)
+
 
 ```
 
@@ -497,7 +498,6 @@ seventh_bag <- data.frame(
   Review = BagReviews7
 )
 
-View(seventh_bag)
 
 ```
 
@@ -539,7 +539,7 @@ eighth_bag <- data.frame(
   Review = BagReviews8
 )
 
-View(eighth_bag)
+
 ```
 
 ```{r}
@@ -579,7 +579,7 @@ ninth_bag <- data.frame(
   Review = BagReviews9
 )
 
-View(ninth_bag)
+
 ```
 
 ```{r}
@@ -620,5 +620,5 @@ tenth_bag <- data.frame(
   Review = BagReviews10
 )
 
-View(tenth_bag)
-````
+
+```
