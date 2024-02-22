@@ -1,0 +1,154 @@
+---
+title: "Movies"
+author: "Dianah Marie Canonicato"
+date: "2024-02-22"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+install.packages("dplyr")
+install.packages("rvest")
+install.packages("httr")
+install.packages("polite")
+
+```{r}
+library(polite)
+library(rvest)
+library(httr)
+library(dplyr)
+
+#movie1
+url1 <-"https://www.imdb.com/title/tt0903747/reviews?ref_=tt_urv"
+
+session1 <- bow(url1, user_agent = "Educational Purposes")
+session1 <- scrape(session1)  
+
+reviewer1 <- session1 %>%
+html_nodes ("div.display-name-date:nth-of-type(2) a")%>%
+html_text()
+reviewer1 <- reviewer1 [1:25]
+reviewer1
+
+
+date1<- session1 %>%
+html_nodes ("div.display-name-date:nth-of-type(2) span.review-date")%>%
+html_text()
+date1 <- date1 [1:25]
+date1
+
+stars1 <- session1 %>%
+html_nodes (".collapsable span.rating-other-user-rating")%>%
+html_text()
+stars1 <- stars1 [1:25]
+stars1
+
+title_review_itself1 <- session1 %>%
+html_nodes ("a.title")%>%
+html_text()
+title_review_itself1 <- title_review_itself1 [1:25]
+title_review_itself1
+
+
+movie_df <- data.frame(
+  Reviewer = reviewer1,
+  Review_Date = date1,
+  Stars = stars1,
+  Review_Title = title_review_itself1
+)
+
+View(movie_df)
+
+```
+
+```{r}
+#movie2
+
+url2 <-"https://www.imdb.com/title/tt5491994/reviews?ref_=tt_urv"
+
+session2 <- bow(url2, user_agent = "Educational Purposes")
+session2 <- scrape(session2)  
+
+reviewer2 <- session2 %>%
+html_nodes (".collapsable div:nth-of-type(2) .display-name-link a")%>%
+html_text()
+reviewer2 <- reviewer2 [1:25]
+reviewer2
+
+date2<- session2 %>%
+html_nodes ("span.review-date")%>%
+html_text()
+date2 <- date2 [1:25]
+date2
+
+
+stars2 <- session2 %>%
+html_nodes (".collapsable span.rating-other-user-rating")%>%
+html_text()
+stars2 <- stars2 [1:25]
+stars2
+
+
+title_review_itself2 <- session2 %>%
+html_nodes ("a.title")%>%
+html_text()
+title_review_itself2 <- title_review_itself2 [1:25]
+title_review_itself2
+
+
+movie_df <- data.frame(
+  Reviewer = reviewer2,
+  Review_Date = date2,
+  Stars = stars2,
+  Review_Title = title_review_itself2
+)
+
+View(movie_df)
+
+```
+
+```{r}
+# movie 3 
+
+
+url3 <-"https://www.imdb.com/title/tt0417299/reviews?ref_=tt_urv"
+
+session3 <- bow(url3, user_agent = "Educational Purposes")
+session3 <- scrape(session3)  
+
+reviewer3 <- session2 %>%
+html_nodes (".display-name-link a")%>%
+html_text()
+reviewer3 <- reviewer3 [1:25]
+reviewer3
+
+date2<- session2 %>%
+html_nodes ("span.review-date")%>%
+html_text()
+date2 <- date2 [1:25]
+date2
+
+
+stars2 <- session2 %>%
+html_nodes (".collapsable span.rating-other-user-rating")%>%
+html_text()
+stars2 <- stars2 [1:25]
+stars2
+
+
+title_review_itself2 <- session2 %>%
+html_nodes ("a.title")%>%
+html_text()
+title_review_itself2 <- title_review_itself2 [1:25]
+title_review_itself2
+
+
+movie_df <- data.frame(
+  Reviewer = reviewer2,
+  Review_Date = date2,
+  Stars = stars2,
+  Review_Title = title_review_itself2
+)
+
+View(movie_df)
