@@ -16,6 +16,8 @@ install.packages("httr")
 install.packages("polite")
 
 ```{r}
+Bagdf <- data.frame()
+
 library(polite)
 library(rvest)
 library(httr)
@@ -198,13 +200,13 @@ bag_data4 <- data.frame(
 )
 
 
-
-
+Bind <- rbind(bag_data,bag_data2,bag_data3,bag_data4)
+View(Bind)
 
 ```
 
 ```{r}
-
+library(readr)
 #2nd
 
 firstbagLink <-"https://www.amazon.co.uk/TARION-Photography-Compartment-Professional-Waterproof/dp/B07WS9F4CH/ref=sr_1_1_sspa?crid=3PO05N0ZNKL8W&keywords=bag&qid=1707491568&sprefix=ba%2Caps%2C379&sr=8-1-spons&sp_csd=d2lkZ2V0TmFtZT1zcF9hdGY&th=1"
@@ -215,25 +217,25 @@ session2 <- scrape(session2)
 BagReviewer1 <- session2 %>%
 html_nodes (".a-row[data-hook] a span, .a-spacing-mini div.a-profile span")%>%
 html_text()
-BagReviewer1 <- BagReviewer1[1:5]
+BagReviewer1 <- BagReviewer1[1:10]
 BagReviewer1
 
 BagDateReview1  <- session2 %>%
 html_nodes(".a-row .a-section span.a-size-base.a-color-secondary")%>% 
 html_text()
-BagDateReview1 <- BagDateReview1[1:5] 
+BagDateReview1 <- BagDateReview1[1:10] 
 BagDateReview1
 
 BagIndRate1 <- session2 %>%
 html_nodes (".a-size-base .review-rating span") %>%
 html_text()
-BagIndRate1 <- BagIndRate1 [1:5]
+BagIndRate1 <- BagIndRate1 [1:10]
 BagIndRate1
 
 BagReviews1 <- session2 %>%
 html_nodes (".a-size-base.a-link-normal span:nth-of-type(2)") %>%
 html_text()  
-BagReviews1 <- BagReviews1 [1:5]
+BagReviews1 <- BagReviews1 [1:10]
 BagReviews1
 
 
@@ -244,11 +246,6 @@ first_bag <- data.frame(
   Review = BagReviews1
 )
 
-
-
-```
-
-```{r}
 #3rd
 
 secondbagLink <-"https://www.amazon.co.uk/Weekend-Overnight-Holdalls-Waterproof-Weekender/dp/B07Y52NVGD/ref=sr_1_8?crid=3PO05N0ZNKL8W&keywords=bag&qid=1707522137&sprefix=ba%2Caps%2C379&sr=8-8&th=1"
@@ -290,9 +287,6 @@ second_bag <- data.frame(
 )
 
 
-```
-
-```{r}
 #4th
 
 thirdbagLink <-"https://www.amazon.co.uk/Levis-Crossbody-Solid-Batwing-Black/dp/B08BLSXB8P/ref=sr_1_33?crid=3PO05N0ZNKL8W&keywords=bag&qid=1707522137&sprefix=ba%2Caps%2C379&sr=8-33"
@@ -333,9 +327,6 @@ third_bag <- data.frame(
 
 
 
-```
-
-```{r}
 #4th
 
 fourthbagLink <-"https://www.amazon.co.uk/PUMA-Unisex-Adult-Buzz-Backpack/dp/B00XZU9TSG/ref=sr_1_37?crid=3PO05N0ZNKL8W&keywords=bag&qid=1707522137&sprefix=ba%2Caps%2C379&sr=8-37&th=1"
@@ -377,9 +368,6 @@ fourth_bag <- data.frame(
 
 
 
-```
-
-```{r}
 fifthbagLink <-"https://www.amazon.co.uk/dp/B09WCX38NB/ref=sspa_dk_detail_1?pd_rd_i=B09WCX38NB&pd_rd_w=LE2B4&content-id=amzn1.sym.84ea1bf1-65a8-4363-b8f5-f0df58cbb686&pf_rd_p=84ea1bf1-65a8-4363-b8f5-f0df58cbb686&pf_rd_r=CAGWJRZ2Z5D52Q6J1DKT&pd_rd_wg=Z0Sn9&pd_rd_r=6f8f3393-0acc-4c50-a2a4-5e0814941c0f&s=clothing&sp_csd=d2lkZ2V0TmFtZT1zcF9kZXRhaWw&th=1"
 
 session6 <- bow(fifthbagLink, user_agent = "Educational Purposes")
@@ -417,9 +405,7 @@ fifth_bag <- data.frame(
 )
 
 
-```
 
-```{r}
 sixbagLink <-"https://www.amazon.co.uk/Lenovo-GX40Q17229-Toploader-T210/dp/B075Y6Y9H5/ref=sr_1_37?crid=3PO05N0ZNKL8W&keywords=bag&qid=1707541123&sprefix=ba%2Caps%2C379&sr=8-37&th=1"
 
 session7 <- bow(sixbagLink, user_agent = "Educational Purposes")
@@ -459,9 +445,6 @@ sixth_bag <- data.frame(
 
 
 
-```
-
-```{r}
 sevenbagLink <-"https://www.amazon.co.uk/Kipling-Asseni-Womens-33x21x14-Centimeters/dp/B07TWSQRGK/ref=sr_1_27?crid=3PO05N0ZNKL8W&keywords=bag&qid=1707547903&sprefix=ba%2Caps%2C379&sr=8-27&th=1"
 
 session8 <- bow(sevenbagLink, user_agent = "Educational Purposes")
@@ -499,9 +482,6 @@ seventh_bag <- data.frame(
 )
 
 
-```
-
-```{r}
 eightbagLink <-"https://www.amazon.co.uk/LEVIS-FOOTWEAR-ACCESSORIES-Batwing-30x14x39/dp/B077GVXZV4/ref=sr_1_45?crid=3PO05N0ZNKL8W&keywords=bag&qid=1707547903&sprefix=ba%2Caps%2C379&sr=8-45&th=1"
 
 session9 <- bow(eightbagLink, user_agent = "Educational Purposes")
@@ -540,9 +520,7 @@ eighth_bag <- data.frame(
 )
 
 
-```
 
-```{r}
 ninebagLink <-"https://www.amazon.co.uk/Kipling-Gabbie-Womens-Cross-Body-Active/dp/B07DKHD5P2/ref=sr_1_60?crid=3PO05N0ZNKL8W&keywords=bag&qid=1707547903&sprefix=ba%2Caps%2C379&sr=8-60&th=1"
 
 session10 <- bow(ninebagLink, user_agent = "Educational Purposes")
@@ -580,9 +558,7 @@ ninth_bag <- data.frame(
 )
 
 
-```
 
-```{r}
 tenbagLink <-"https://www.amazon.co.uk/Michael-Kors-Crossbody-Signature-49S2CRHS1B/dp/B0B9CC5D5Q/ref=sr_1_55?crid=3PO05N0ZNKL8W&keywords=bag&qid=1707550465&sprefix=ba%2Caps%2C379&sr=8-55&th=1"
 
 session11 <- bow(tenbagLink, user_agent = "Educational Purposes")
@@ -619,6 +595,33 @@ tenth_bag <- data.frame(
   IndividualRating = BagIndRate10,
   Review = BagReviews10
 )
+View(first_bag)
+View(second_bag)
+
+colnames(first_bag) <- colnames(second_bag) <- colnames(third_bag) <- colnames(fourth_bag) <- colnames(fifth_bag) <- colnames(sixth_bag) <- colnames(seventh_bag) <- colnames(eighth_bag) <- colnames(ninth_bag) <- colnames(tenth_bag) <- c("Reviewer", "Date", "Rating", "Review")
+Bind2 <- rbind(first_bag,second_bag,third_bag,fourth_bag,fifth_bag,sixth_bag,seventh_bag,eighth_bag,ninth_bag,tenth_bag)
+View(Bind2)
+
+write.csv(Bind2, file = "Bags.csv",)
+
+```
+
+install.packages("DBI")
+install.packages("odbc")
+install.packages("RMySQL")
+install.packages("dplyr")
+install.packages("dbplyr")
+```{r}
+library(DBI)
+library(odbc)
+library(RMySQL)
+library(dplyr,dbplyr)
+connection <- dbConnect(RMySQL::MySQL(),
+                        dsn="MariaDB-connection",
+                        Server = "localhost",
+                        dbname = "canonicato_2c", 
+                        user = "root", 
+                        password = "") 
 
 
 ```
