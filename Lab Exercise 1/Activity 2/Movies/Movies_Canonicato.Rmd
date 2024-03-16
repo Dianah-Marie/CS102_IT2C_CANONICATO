@@ -1,5 +1,5 @@
 ---
-title: "Untitled"
+title: "Activity 3"
 author: "Dianah Marie Canonicato"
 date: "2024-02-29"
 output: html_document
@@ -31,40 +31,37 @@ for (page in 1:5) {
   link1 <- paste0("https://www.imdb.com/title/tt0903747/reviews?ref_=tt_urv", page)
   session1 <- bow(link1, user_agent = "Educational Purpose")
 
-  scrapeNodes <- function(selector) {
+   scrapeNodes <- function(selector) {
     scrape(session1) %>%
       html_nodes(selector) %>%
       html_text(trim = TRUE)
-  }
+   }
 
-  MovieName <- "Breaking Bad (2008–2013)"
+  movieName <- "Breaking Bad (2008–2013)"
   scrapedTitle <- scrapeNodes("a.title")[1:10]
-  scrapedReviewer <- scrapeNodes("div.display-name-date:nth-of-type(2) a")[1:10]
-  scrapedReview <- scrapeNodes("div.collapsable:nth-of-type(n+2) div.text, div:nth-of-type(n+15) span.spoiler-warning")[1:10]
-  scrapedDate <- scrapeNodes("div.display-name-date:nth-of-type(2) span.review-date")[1:10]
-  scrapedRating <- scrapeNodes("div.ipl-ratings-bar")[1:10]
-  scrapedType <- scrapeNodes(".sc-ab73d3b3-1 a.ipc-metadata-list-item__list-content-item")[1:10]
-
+  scrapedReviewer <- scrapeNodes(".display-name-link a")[1:10]
+  scrapedReview <- scrapeNodes(".collapsable div.text")[1:10]
+  scrapedDate <- scrapeNodes("div.lister-item:nth-of-type(n+2) span.review-date")[1:10]
+  scrapedRating <- scrapeNodes("span.rating-other-user-rating")[1:10]
+  
+  
 movie1 <- rbind(movie1, data.frame(
-    movie_name = MovieName,
+    movie_name = movieName,
     title = scrapedTitle,
     reviewer = scrapedReviewer,
     review = scrapedReview,
     date = scrapedDate,
-    ratings = scrapedRating,
-    type_of_movie= scrapedType
+    ratings = scrapedRating
   ))
 
   
 }
 
-View(movie1)
-
-```
+#View(movie1)
 
 
-Movie 2
-```{r}
+
+#Movie2
 
 library(dplyr)
 library(rvest)
@@ -84,13 +81,12 @@ for (page in 1:5) {
       html_text(trim = TRUE)
   }
 
-  movieName2 <- "Planet Earth II (2016)"
+  movieName <- "Planet Earth II (2016)"
   scrapedTitle <- scrapeNodes("a.title")[1:10]
-  scrapedReviewer <- scrapeNodes(".collapsable div:nth-of-type(2) .display-name-link a")[1:10]
-  scrapedReview <- scrapeNodes("div.content:nth-of-type(3) div.text")[1:10]
-  scrapedDate <- scrapeNodes("span.review-date")[1:10]
-  scrapedRating <- scrapeNodes(".collapsable span.rating-other-user-rating")[1:10]
-  scrapedType <- scrapeNodes("span.a-size-mini.a-color-state.a-text-bold")[1:10]
+  scrapedReviewer <- scrapeNodes(".display-name-link a")[1:10]
+  scrapedReview <- scrapeNodes(".collapsable div.text")[1:10]
+  scrapedDate <- scrapeNodes("div.lister-item:nth-of-type(n+2) span.review-date")[1:10]
+  scrapedRating <- scrapeNodes("span.rating-other-user-rating")[1:10]
 
   movie2 <- rbind(movie2, data.frame(
     movie_name = movieName,
@@ -98,20 +94,19 @@ for (page in 1:5) {
     reviewer = scrapedReviewer,
     review = scrapedReview,
     date = scrapedDate,
-    ratings = scrapedRating,
-    type_of_movie = scrapedType
+    ratings = scrapedRating
   ))
 
 
 }
 
-View(movie2)
-
-```
+#View(movie2)
 
 
-movie3
-```{r}
+
+
+#movie3
+
 
 library(dplyr)
 library(rvest)
@@ -134,31 +129,30 @@ for (page in 1:5) {
   movieName <- "Avatar: The Last Airbender (2005–2008)"
   scrapedTitle <- scrapeNodes("a.title")[1:10]
   scrapedReviewer <- scrapeNodes(".display-name-link a")[1:10]
-  scrapedReview <- scrapeNodes("div.lister-item:nth-of-type(n+3) div:nth-of-type(3) div.text")[1:10]
-  scrapedDate <- scrapeNodes("span.review-date")[1:10]
-  scrapedRating <- scrapeNodes(".collapsable span.rating-other-user-rating")[1:10]
-  scrapedType <- scrapeNodes("span.a-size-mini.a-color-state.a-text-bold")[1:10]
+  scrapedReview <- scrapeNodes(".collapsable div.text")[1:10]
+  scrapedDate <- scrapeNodes("div.lister-item:nth-of-type(n+2) span.review-date")[1:10]
+  scrapedRating <- scrapeNodes("span.rating-other-user-rating")[1:10]
+
 
   movie3 <- rbind(movie3, data.frame(
-    prod_name = movieName,
+    movie_name = movieName,
     title = scrapedTitle,
     reviewer = scrapedReviewer,
     review = scrapedReview,
     date = scrapedDate,
-    ratings = scrapedRating,
-    type_of_purchase = scrapedType
+    ratings = scrapedRating
   ))
 
 
 }
 
-View(movie3)
-
-```
+#View(movie3)
 
 
-Movie 4
-```{r}
+
+
+#Movie 4
+
 
 library(dplyr)
 library(rvest)
@@ -179,34 +173,32 @@ for (page in 1:5) {
   }
 
   movieName <- "The Shawshank Redemption (1994)"
-  scrapedTitle <- scrapeNodes("a.title")[1:10]
+ scrapedTitle <- scrapeNodes("a.title")[1:10]
   scrapedReviewer <- scrapeNodes(".display-name-link a")[1:10]
-  scrapedReview <- scrapeNodes("span.spoiler-warning, div.content:nth-of-type(3) div.text")[1:10]
-  scrapedDate <- scrapeNodes("span.review-date")[1:10]
-  scrapedRating <- scrapeNodes(".collapsable div.ipl-ratings-bar")[1:10]
-  scrapedType <- scrapeNodes("span.a-size-mini.a-color-state.a-text-bold")[1:10]
+  scrapedReview <- scrapeNodes(".collapsable div.text")[1:10]
+  scrapedDate <- scrapeNodes("div.lister-item:nth-of-type(n+2) span.review-date")[1:10]
+  
 
   movie4 <- rbind(movie4, data.frame(
-    movie_name = movieName,
+   movie_name = movieName,
     title = scrapedTitle,
     reviewer = scrapedReviewer,
     review = scrapedReview,
     date = scrapedDate,
-    ratings = scrapedRating,
-    type_of_purchase = scrapedType
+    ratings = scrapedRating
+   
   ))
 
   #Sys.sleep(3)
 }
 
-View(movie4)
-
-```
+#View(movie4)
 
 
 
-Movie 5
-```{r}
+
+#Movie 5
+
 
 library(dplyr)
 library(rvest)
@@ -229,10 +221,9 @@ for (page in 1:5) {
   movieName <- "The Lord of the Rings: The Fellowship of the Ring"
   scrapedTitle <- scrapeNodes("a.title")[1:10]
   scrapedReviewer <- scrapeNodes(".display-name-link a")[1:10]
-  scrapedReview <- scrapeNodes("span.spoiler-warning, div.content:nth-of-type(3) div.text")[1:10]
-  scrapedDate <- scrapeNodes("span.review-date")[1:10]
-  scrapedRating <- scrapeNodes(".collapsable div.ipl-ratings-bar")[1:10]
-  scrapedType <- scrapeNodes("span.a-size-mini.a-color-state.a-text-bold")[1:10]
+  scrapedReview <- scrapeNodes(".collapsable div.text")[1:10]
+  scrapedDate <- scrapeNodes("div.lister-item:nth-of-type(n+2) span.review-date")[1:10]
+ 
 
   movie5 <- rbind(movie5, data.frame(
     movie_name = movieName,
@@ -240,20 +231,18 @@ for (page in 1:5) {
     reviewer = scrapedReviewer,
     review = scrapedReview,
     date = scrapedDate,
-    ratings = scrapedRating,
-    type_of_purchase = scrapedType
+    ratings = scrapedRating
   ))
 
   
 }
 
-View(movie5)
-
-```
+#View(movie5)
 
 
-Movie 6
-```{r}
+
+#Movie 6
+
 
 library(dplyr)
 library(rvest)
@@ -279,16 +268,14 @@ for (page in 3:7) {
   scrapedReview <- scrapeNodes("span.spoiler-warning, div.content:nth-of-type(3) div.text")[1:10]
   scrapedDate <- scrapeNodes("span.review-date")[1:10]
   scrapedRating <- scrapeNodes(".collapsable div.ipl-ratings-bar")[1:10]
-  scrapedType <- scrapeNodes("span.a-size-mini.a-color-state.a-text-bold")[1:10]
-
+ 
   movie6 <- rbind(movie6, data.frame(
     movie_name = movieName,
     title = scrapedTitle,
     reviewer = scrapedReviewer,
     review = scrapedReview,
     date = scrapedDate,
-    ratings = scrapedRating,
-    type_of_purchase = scrapedType
+    ratings = scrapedRating
     
   ))
 
@@ -297,12 +284,10 @@ for (page in 3:7) {
   
 }
 
-View(movie6)
+#View(movie6)
 
-```
+#Movie7
 
-Movie7
-```{r}
 
 library(dplyr)
 library(rvest)
@@ -321,33 +306,32 @@ for (page in 3:7) {
       html_nodes(selector) %>%
       html_text(trim = TRUE)
   }
-
+  
+  movieName <- "Life Is Beautiful (1997)"
   scrapedTitle <- scrapeNodes("a.title")[1:10]
   scrapedReviewer <- scrapeNodes(".display-name-link a")[1:10]
   scrapedReview <- scrapeNodes("span.spoiler-warning, div.content:nth-of-type(3) div.text")[1:10]
   scrapedDate <- scrapeNodes("span.review-date")[1:10]
   scrapedRating <- scrapeNodes(".collapsable div.ipl-ratings-bar")[1:10]
-  scrapedType <- scrapeNodes("span.a-size-mini.a-color-state.a-text-bold")[1:10]
-
+  
   movie7 <- rbind(movie7, data.frame(
     movie_name = movieName,
     title = scrapedTitle,
     reviewer = scrapedReviewer,
     review = scrapedReview,
     date = scrapedDate,
-    ratings = scrapedRating,
-    type_of_purchase = scrapedType
+    ratings = scrapedRating
 ))
 
 }
 
-View(movie7)
-
-```
+#View(movie7)
 
 
-Movie 8
-```{r}
+
+#Movie 8
+
+
 library(dplyr)
 library(rvest)
 library(polite)
@@ -371,26 +355,24 @@ for (page in 3:7) {
   scrapedReview <- scrapeNodes("span.spoiler-warning, div.content:nth-of-type(3) div.text")[1:10]
   scrapedDate <- scrapeNodes("span.review-date")[1:10]
   scrapedRating <- scrapeNodes(".collapsable div.ipl-ratings-bar")[1:10]
-  scrapedType <- scrapeNodes("span.a-size-mini.a-color-state.a-text-bold")[1:10]
-
+ 
  movie8 <- rbind(movie8, data.frame(
     movie_name = movieName,
     title = scrapedTitle,
     reviewer = scrapedReviewer,
     review = scrapedReview,
     date = scrapedDate,
-    ratings = scrapedRating,
-    type_of_purchase = scrapedType
+    ratings = scrapedRating
   ))
 
   
 }
 
-View(movie8)
-```
+#View(movie8)
 
-Movie9
-```{r}
+
+#Movie9
+
 library(dplyr)
 library(rvest)
 library(polite)
@@ -415,26 +397,24 @@ for (page in 3:7) {
   scrapedReview <- scrapeNodes("span.spoiler-warning, div.content:nth-of-type(3) div.text")[1:10]
   scrapedDate <- scrapeNodes("span.review-date")[1:10]
   scrapedRating <- scrapeNodes(".collapsable div.ipl-ratings-bar")[1:10]
-  scrapedType <- scrapeNodes("span.a-size-mini.a-color-state.a-text-bold")[1:10]
-
+ 
 movie9 <- rbind(movie9, data.frame(
     movie_name = movieName,
     title = scrapedTitle,
     reviewer = scrapedReviewer,
     review = scrapedReview,
     date = scrapedDate,
-    ratings = scrapedRating,
-    type_of_purchase = scrapedType
+    ratings = scrapedRating
   ))
 
   
 }
 
-View(movie9)
-```
+#View(movie9)
 
-Movie10
-```{r}
+
+#Movie10
+
 library(dplyr)
 library(rvest)
 library(polite)
@@ -459,7 +439,7 @@ for (page in 6:10) {
   scrapedReview <- scrapeNodes("span.spoiler-warning, div.content:nth-of-type(3) div.text")[1:10]
   scrapedDate <- scrapeNodes("span.review-date")[1:10]
   scrapedRating <- scrapeNodes(".collapsable div.ipl-ratings-bar")[1:10]
-  scrapedType <- scrapeNodes("span.a-size-mini.a-color-state.a-text-bold")[1:10]
+ 
 
  movie10 <- rbind(movie10, data.frame(
     movie_name = movieName,
@@ -467,18 +447,16 @@ for (page in 6:10) {
     reviewer = scrapedReviewer,
     review = scrapedReview,
     date = scrapedDate,
-    ratings = scrapedRating,
-    type_of_purchase = scrapedType
+    ratings = scrapedRating
   ))
 
   
 }
 
-View(movie10)
-```
+#View(movie10)
 
-Movie11
-```{r}
+#Movie11
+
 library(dplyr)
 library(rvest)
 library(polite)
@@ -502,27 +480,26 @@ for (page in 3:7) {
   scrapedReview <- scrapeNodes("span.spoiler-warning, div.content:nth-of-type(3) div.text")[1:10]
   scrapedDate <- scrapeNodes("span.review-date")[1:10]
   scrapedRating <- scrapeNodes(".collapsable div.ipl-ratings-bar")[1:10]
-  scrapedType <- scrapeNodes("span.a-size-mini.a-color-state.a-text-bold")[1:10]
-
+ 
 
 movie11 <- rbind(movie11, data.frame(
-    movie_name = movieName,
+   movie_name = movieName,
     title = scrapedTitle,
     reviewer = scrapedReviewer,
     review = scrapedReview,
     date = scrapedDate,
-    ratings = scrapedRating,
-    type_of_purchase = scrapedType
+    ratings = scrapedRating
+   
   ))
 
 
 }
 
-View(movie11)
-```
+#View(movie11)
 
-Movie12
-```{r}
+
+#Movie12
+
 library(dplyr)
 library(rvest)
 library(polite)
@@ -547,8 +524,7 @@ for (page in 3:7) {
   scrapedReview <- scrapeNodes("span.spoiler-warning, div.content:nth-of-type(3) div.text")[1:10]
   scrapedDate <- scrapeNodes("span.review-date")[1:10]
   scrapedRating <- scrapeNodes(".collapsable div.ipl-ratings-bar")[1:10]
-  scrapedType <- scrapeNodes("span.a-size-mini.a-color-state.a-text-bold")[1:10]
-
+  
 
 movie12 <- rbind(movie12, data.frame(
     movie_name = movieName,
@@ -556,17 +532,17 @@ movie12 <- rbind(movie12, data.frame(
     reviewer = scrapedReviewer,
     review = scrapedReview,
     date = scrapedDate,
-    ratings = scrapedRating,
-    type_of_purchase = scrapedType
+    ratings = scrapedRating
+    
   ))
 
   #Sys.sleep(3)
 }
 
-View(movie12)
-```
-Movie13
-```{r}
+#View(movie12)
+
+#Movie13
+
 library(dplyr)
 library(rvest)
 library(polite)
@@ -591,7 +567,7 @@ for (page in 3:7) {
   scrapedReview <- scrapeNodes("span.spoiler-warning, div.content:nth-of-type(3) div.text")[1:10]
   scrapedDate <- scrapeNodes("span.review-date")[1:10]
   scrapedRating <- scrapeNodes(".collapsable div.ipl-ratings-bar")[1:10]
-  scrapedType <- scrapeNodes("span.a-size-mini.a-color-state.a-text-bold")[1:10]
+  
 
 
 movie13 <- rbind(movie13, data.frame(
@@ -600,17 +576,16 @@ movie13 <- rbind(movie13, data.frame(
     reviewer = scrapedReviewer,
     review = scrapedReview,
     date = scrapedDate,
-    ratings = scrapedRating,
-    type_of_purchase = scrapedType
+    ratings = scrapedRating
   ))
 
 }
 
-View(movie13)
-```
+#View(movie13)
 
-Movie14
-```{r}
+
+#Movie14
+
 library(dplyr)
 library(rvest)
 library(polite)
@@ -635,8 +610,7 @@ for (page in 3:7) {
   scrapedReview <- scrapeNodes("span.spoiler-warning, div.content:nth-of-type(3) div.text")[1:10]
   scrapedDate <- scrapeNodes("span.review-date")[1:10]
   scrapedRating <- scrapeNodes(".collapsable div.ipl-ratings-bar")[1:10]
-  scrapedType <- scrapeNodes("span.a-size-mini.a-color-state.a-text-bold")[1:10]
-
+  
 
 movie14 <- rbind(movie14, data.frame(
     movie_name = movieName,
@@ -644,18 +618,16 @@ movie14 <- rbind(movie14, data.frame(
     reviewer = scrapedReviewer,
     review = scrapedReview,
     date = scrapedDate,
-    ratings = scrapedRating,
-    type_of_purchase = scrapedType
+    ratings = scrapedRating
   ))
 
 }
 
-View(movie14)
+#View(movie14)
 
-```
 
-Movie15
-```{r}
+
+#Movie15
 library(dplyr)
 library(rvest)
 library(polite)
@@ -680,8 +652,7 @@ for (page in 3:7) {
   scrapedReview <- scrapeNodes("span.spoiler-warning, div.content:nth-of-type(3) div.text")[1:10]
   scrapedDate <- scrapeNodes("span.review-date")[1:10]
   scrapedRating <- scrapeNodes(".collapsable div.ipl-ratings-bar")[1:10]
-  scrapedType <- scrapeNodes("span.a-size-mini.a-color-state.a-text-bold")[1:10]
-
+ 
 
 movie15 <- rbind(movie15, data.frame(
     movie_name = movieName,
@@ -689,18 +660,17 @@ movie15 <- rbind(movie15, data.frame(
     reviewer = scrapedReviewer,
     review = scrapedReview,
     date = scrapedDate,
-    ratings = scrapedRating,
-    type_of_purchase = scrapedType
+    ratings = scrapedRating
   ))
 
 }
 
-View(movie15)
+#View(movie15)
 
-```
 
-Movie16
-```{r}
+
+#Movie16
+
 library(dplyr)
 library(rvest)
 library(polite)
@@ -725,8 +695,7 @@ for (page in 3:7) {
   scrapedReview <- scrapeNodes("span.spoiler-warning, div.content:nth-of-type(3) div.text")[1:10]
   scrapedDate <- scrapeNodes("span.review-date")[1:10]
   scrapedRating <- scrapeNodes(".collapsable div.ipl-ratings-bar")[1:10]
-  scrapedType <- scrapeNodes("span.a-size-mini.a-color-state.a-text-bold")[1:10]
-
+  
 
 movie16 <- rbind(movie16, data.frame(
     movie_name = movieName,
@@ -734,19 +703,17 @@ movie16 <- rbind(movie16, data.frame(
     reviewer = scrapedReviewer,
     review = scrapedReview,
     date = scrapedDate,
-    ratings = scrapedRating,
-    type_of_purchase = scrapedType
+    ratings = scrapedRating
   ))
 
 }
 
-View(movie16)
+#View(movie16)
 
 
-```
 
-Movie17
-```{r}
+
+#Movie17
 library(dplyr)
 library(rvest)
 library(polite)
@@ -771,7 +738,7 @@ for (page in 3:7) {
   scrapedReview <- scrapeNodes("span.spoiler-warning, div.content:nth-of-type(3) div.text")[1:10]
   scrapedDate <- scrapeNodes("span.review-date")[1:10]
   scrapedRating <- scrapeNodes(".collapsable div.ipl-ratings-bar")[1:10]
-  scrapedType <- scrapeNodes("span.a-size-mini.a-color-state.a-text-bold")[1:10]
+  
 
 
 movie17 <- rbind(movie17, data.frame(
@@ -780,19 +747,17 @@ movie17 <- rbind(movie17, data.frame(
     reviewer = scrapedReviewer,
     review = scrapedReview,
     date = scrapedDate,
-    ratings = scrapedRating,
-    type_of_purchase = scrapedType
+    ratings = scrapedRating
   ))
 
 }
 
-View(movie17)
+#View(movie17)
 
 
-```
 
-Movie18
-```{r}
+
+#Movie18
 library(dplyr)
 library(rvest)
 library(polite)
@@ -817,28 +782,24 @@ for (page in 3:7) {
   scrapedReview <- scrapeNodes("span.spoiler-warning, div.content:nth-of-type(3) div.text")[1:10]
   scrapedDate <- scrapeNodes("span.review-date")[1:10]
   scrapedRating <- scrapeNodes(".collapsable div.ipl-ratings-bar")[1:10]
-  scrapedType <- scrapeNodes("span.a-size-mini.a-color-state.a-text-bold")[1:10]
-
+  
 
 movie18 <- rbind(movie18, data.frame(
-    movie_name = movieName,
+   movie_name = movieName,
     title = scrapedTitle,
     reviewer = scrapedReviewer,
     review = scrapedReview,
     date = scrapedDate,
-    ratings = scrapedRating,
-    type_of_purchase = scrapedType
+    ratings = scrapedRating
   ))
 
 }
 
-View(movie18)
+#View(movie18)
 
 
-```
 
-Movie19
-```{r}
+#Movie19
 library(dplyr)
 library(rvest)
 library(polite)
@@ -863,8 +824,7 @@ for (page in 3:7) {
   scrapedReview <- scrapeNodes("span.spoiler-warning, div.content:nth-of-type(3) div.text")[1:10]
   scrapedDate <- scrapeNodes("span.review-date")[1:10]
   scrapedRating <- scrapeNodes(".collapsable div.ipl-ratings-bar")[1:10]
-  scrapedType <- scrapeNodes("span.a-size-mini.a-color-state.a-text-bold")[1:10]
-
+  
 
 movie19 <- rbind(movie19, data.frame(
     movie_name = movieName,
@@ -872,18 +832,16 @@ movie19 <- rbind(movie19, data.frame(
     reviewer = scrapedReviewer,
     review = scrapedReview,
     date = scrapedDate,
-    ratings = scrapedRating,
-    type_of_purchase = scrapedType
+    ratings = scrapedRating
   ))
 
 }
 
-View(movie19)
+#View(movie19)
 
-```
-Movie20
 
-```{r}
+#Movie20
+
 
 library(dplyr)
 library(rvest)
@@ -909,8 +867,7 @@ for (page in 3:7) {
   scrapedReview <- scrapeNodes("span.spoiler-warning, div.content:nth-of-type(3) div.text")[1:10]
   scrapedDate <- scrapeNodes("span.review-date")[1:10]
   scrapedRating <- scrapeNodes(".collapsable div.ipl-ratings-bar")[1:10]
-  scrapedType <- scrapeNodes("span.a-size-mini.a-color-state.a-text-bold")[1:10]
-
+  
 
 movie20 <- rbind(movie20, data.frame(
     movie_name = movieName,
@@ -918,18 +875,15 @@ movie20 <- rbind(movie20, data.frame(
     reviewer = scrapedReviewer,
     review = scrapedReview,
     date = scrapedDate,
-    ratings = scrapedRating,
-    type_of_purchase = scrapedType
+    ratings = scrapedRating
   ))
 
 }
 
-View(movie20)
-```
+#View(movie20)
 
-Movie21
+#Movie21
 
-```{r}
 
 library(dplyr)
 library(rvest)
@@ -955,7 +909,7 @@ for (page in 3:7) {
   scrapedReview <- scrapeNodes("span.spoiler-warning, div.content:nth-of-type(3) div.text")[1:10]
   scrapedDate <- scrapeNodes("span.review-date")[1:10]
   scrapedRating <- scrapeNodes(".collapsable div.ipl-ratings-bar")[1:10]
-  scrapedType <- scrapeNodes("span.a-size-mini.a-color-state.a-text-bold")[1:10]
+
 
 
 movie21 <- rbind(movie21, data.frame(
@@ -964,17 +918,15 @@ movie21 <- rbind(movie21, data.frame(
     reviewer = scrapedReviewer,
     review = scrapedReview,
     date = scrapedDate,
-    ratings = scrapedRating,
-    type_of_purchase = scrapedType
+    ratings = scrapedRating
   ))
 
 }
 
-View(movie21)
-```
+#View(movie21)
 
-Movie22
-```{r}
+
+#Movie22
 library(dplyr)
 library(rvest)
 library(polite)
@@ -999,27 +951,25 @@ for (page in 3:7) {
   scrapedReview <- scrapeNodes("span.spoiler-warning, div.content:nth-of-type(3) div.text")[1:10]
   scrapedDate <- scrapeNodes("span.review-date")[1:10]
   scrapedRating <- scrapeNodes(".collapsable div.ipl-ratings-bar")[1:10]
-  scrapedType <- scrapeNodes("span.a-size-mini.a-color-state.a-text-bold")[1:10]
-
+  
 
 movie22 <- rbind(movie22, data.frame(
-    movie_name = movieName,
+   movie_name = movieName,
     title = scrapedTitle,
     reviewer = scrapedReviewer,
     review = scrapedReview,
     date = scrapedDate,
-    ratings = scrapedRating,
-    type_of_purchase = scrapedType
+    ratings = scrapedRating
   ))
 
 }
 
-View(movie22)
+#View(movie22)
 
-```
 
-movie23
-```{r}
+
+#movie23
+
 
 library(dplyr)
 library(rvest)
@@ -1045,7 +995,7 @@ for (page in 3:7) {
   scrapedReview <- scrapeNodes("span.spoiler-warning, div.content:nth-of-type(3) div.text")[1:10]
   scrapedDate <- scrapeNodes("span.review-date")[1:10]
   scrapedRating <- scrapeNodes(".collapsable div.ipl-ratings-bar")[1:10]
-  scrapedType <- scrapeNodes("span.a-size-mini.a-color-state.a-text-bold")[1:10]
+  
 
 
 movie23 <- rbind(movie23, data.frame(
@@ -1054,18 +1004,17 @@ movie23 <- rbind(movie23, data.frame(
     reviewer = scrapedReviewer,
     review = scrapedReview,
     date = scrapedDate,
-    ratings = scrapedRating,
-    type_of_purchase = scrapedType
+    ratings = scrapedRating
   ))
 
 }
 
-View(movie23)
+#View(movie23)
 
-```
 
-movie24
-```{r}
+
+#movie24
+
 
 library(dplyr)
 library(rvest)
@@ -1091,7 +1040,7 @@ for (page in 3:7) {
   scrapedReview <- scrapeNodes("span.spoiler-warning, div.content:nth-of-type(3) div.text")[1:10]
   scrapedDate <- scrapeNodes("span.review-date")[1:10]
   scrapedRating <- scrapeNodes(".collapsable div.ipl-ratings-bar")[1:10]
-  scrapedType <- scrapeNodes("span.a-size-mini.a-color-state.a-text-bold")[1:10]
+ 
 
 
 movie24 <- rbind(movie24, data.frame(
@@ -1100,18 +1049,17 @@ movie24 <- rbind(movie24, data.frame(
     reviewer = scrapedReviewer,
     review = scrapedReview,
     date = scrapedDate,
-    ratings = scrapedRating,
-    type_of_purchase = scrapedType
+    ratings = scrapedRating
   ))
 
 }
 
-View(movie24)
+#View(movie24)
 
-```
 
-movie25
-```{r}
+
+#movie25
+
 
 library(dplyr)
 library(rvest)
@@ -1137,7 +1085,6 @@ for (page in 3:7) {
   scrapedReview <- scrapeNodes("span.spoiler-warning, div.content:nth-of-type(3) div.text")[1:10]
   scrapedDate <- scrapeNodes("span.review-date")[1:10]
   scrapedRating <- scrapeNodes(".collapsable div.ipl-ratings-bar")[1:10]
-  scrapedType <- scrapeNodes("span.a-size-mini.a-color-state.a-text-bold")[1:10]
 
 
 movie25 <- rbind(movie25, data.frame(
@@ -1146,18 +1093,16 @@ movie25 <- rbind(movie25, data.frame(
     reviewer = scrapedReviewer,
     review = scrapedReview,
     date = scrapedDate,
-    ratings = scrapedRating,
-    type_of_purchase = scrapedType
+    ratings = scrapedRating
   ))
 
 }
 
-View(movie25)
+#View(movie25)
 
-```
 
-movie26
-```{r}
+#movie26
+
 
 library(dplyr)
 library(rvest)
@@ -1183,27 +1128,25 @@ for (page in 3:7) {
   scrapedReview <- scrapeNodes("span.spoiler-warning, div.content:nth-of-type(3) div.text")[1:10]
   scrapedDate <- scrapeNodes("span.review-date")[1:10]
   scrapedRating <- scrapeNodes(".collapsable div.ipl-ratings-bar")[1:10]
-  scrapedType <- scrapeNodes("span.a-size-mini.a-color-state.a-text-bold")[1:10]
+  
 
 
 movie26 <- rbind(movie26, data.frame(
-    movie_name = movieName,
+   movie_name = movieName,
     title = scrapedTitle,
     reviewer = scrapedReviewer,
     review = scrapedReview,
     date = scrapedDate,
-    ratings = scrapedRating,
-    type_of_purchase = scrapedType
+    ratings = scrapedRating
   ))
 
 }
 
-View(movie26)
+#View(movie26)
 
-```
 
-movie27
-```{r}
+
+#movie27
 
 library(dplyr)
 library(rvest)
@@ -1229,8 +1172,7 @@ for (page in 3:7) {
   scrapedReview <- scrapeNodes("span.spoiler-warning, div.content:nth-of-type(3) div.text")[1:10]
   scrapedDate <- scrapeNodes("span.review-date")[1:10]
   scrapedRating <- scrapeNodes(".collapsable div.ipl-ratings-bar")[1:10]
-  scrapedType <- scrapeNodes("span.a-size-mini.a-color-state.a-text-bold")[1:10]
-
+ 
 
 movie27 <- rbind(movie27, data.frame(
     movie_name = movieName,
@@ -1238,18 +1180,16 @@ movie27 <- rbind(movie27, data.frame(
     reviewer = scrapedReviewer,
     review = scrapedReview,
     date = scrapedDate,
-    ratings = scrapedRating,
-    type_of_purchase = scrapedType
+    ratings = scrapedRating
   ))
 
 }
 
-View(movie27)
+#View(movie27)
 
-```
 
-movie28
-```{r}
+#movie28
+
 
 library(dplyr)
 library(rvest)
@@ -1275,8 +1215,6 @@ for (page in 3:7) {
   scrapedReview <- scrapeNodes("span.spoiler-warning, div.content:nth-of-type(3) div.text")[1:10]
   scrapedDate <- scrapeNodes("span.review-date")[1:10]
   scrapedRating <- scrapeNodes(".collapsable div.ipl-ratings-bar")[1:10]
-  scrapedType <- scrapeNodes("span.a-size-mini.a-color-state.a-text-bold")[1:10]
-
 
 movie28 <- rbind(movie28, data.frame(
     movie_name = movieName,
@@ -1284,18 +1222,16 @@ movie28 <- rbind(movie28, data.frame(
     reviewer = scrapedReviewer,
     review = scrapedReview,
     date = scrapedDate,
-    ratings = scrapedRating,
-    type_of_purchase = scrapedType
+    ratings = scrapedRating
   ))
 
 }
 
-View(movie28)
+#View(movie28)
 
-```
 
-movie29
-```{r}
+
+#movie29
 
 library(dplyr)
 library(rvest)
@@ -1321,7 +1257,6 @@ for (page in 3:7) {
   scrapedReview <- scrapeNodes("span.spoiler-warning, div.content:nth-of-type(3) div.text")[1:10]
   scrapedDate <- scrapeNodes("span.review-date")[1:10]
   scrapedRating <- scrapeNodes(".collapsable div.ipl-ratings-bar")[1:10]
-  scrapedType <- scrapeNodes("span.a-size-mini.a-color-state.a-text-bold")[1:10]
 
 
 movie29 <- rbind(movie29, data.frame(
@@ -1330,18 +1265,17 @@ movie29 <- rbind(movie29, data.frame(
     reviewer = scrapedReviewer,
     review = scrapedReview,
     date = scrapedDate,
-    ratings = scrapedRating,
-    type_of_purchase = scrapedType
+    ratings = scrapedRating
   ))
 
 }
 
-View(movie29)
+#View(movie29)
 
-```
 
-movie30
-```{r}
+
+#movie30
+
 
 library(dplyr)
 library(rvest)
@@ -1367,8 +1301,7 @@ for (page in 3:7) {
   scrapedReview <- scrapeNodes("span.spoiler-warning, div.content:nth-of-type(3) div.text")[1:10]
   scrapedDate <- scrapeNodes("span.review-date")[1:10]
   scrapedRating <- scrapeNodes(".collapsable div.ipl-ratings-bar")[1:10]
-  scrapedType <- scrapeNodes("span.a-size-mini.a-color-state.a-text-bold")[1:10]
-
+  
 
 movie30 <- rbind(movie30, data.frame(
     movie_name = movieName,
@@ -1376,18 +1309,17 @@ movie30 <- rbind(movie30, data.frame(
     reviewer = scrapedReviewer,
     review = scrapedReview,
     date = scrapedDate,
-    ratings = scrapedRating,
-    type_of_purchase = scrapedType
+    ratings = scrapedRating
   ))
 
 }
 
-View(movie30)
+#View(movie30)
 
-```
 
-movie31
-```{r}
+
+#movie31
+
 
 library(dplyr)
 library(rvest)
@@ -1413,7 +1345,6 @@ for (page in 3:7) {
   scrapedReview <- scrapeNodes("span.spoiler-warning, div.content:nth-of-type(3) div.text")[1:10]
   scrapedDate <- scrapeNodes("span.review-date")[1:10]
   scrapedRating <- scrapeNodes(".collapsable div.ipl-ratings-bar")[1:10]
-  scrapedType <- scrapeNodes("span.a-size-mini.a-color-state.a-text-bold")[1:10]
 
 
 movie31 <- rbind(movie31, data.frame(
@@ -1422,18 +1353,17 @@ movie31 <- rbind(movie31, data.frame(
     reviewer = scrapedReviewer,
     review = scrapedReview,
     date = scrapedDate,
-    ratings = scrapedRating,
-    type_of_purchase = scrapedType
+    ratings = scrapedRating
   ))
 
 }
 
-View(movie31)
+#View(movie31)
 
-```
 
-movie32
-```{r}
+
+#movie32
+
 
 library(dplyr)
 library(rvest)
@@ -1459,8 +1389,6 @@ for (page in 3:7) {
   scrapedReview <- scrapeNodes("span.spoiler-warning, div.content:nth-of-type(3) div.text")[1:10]
   scrapedDate <- scrapeNodes("span.review-date")[1:10]
   scrapedRating <- scrapeNodes(".collapsable div.ipl-ratings-bar")[1:10]
-  scrapedType <- scrapeNodes("span.a-size-mini.a-color-state.a-text-bold")[1:10]
-
 
 movie32 <- rbind(movie32, data.frame(
     movie_name = movieName,
@@ -1468,18 +1396,16 @@ movie32 <- rbind(movie32, data.frame(
     reviewer = scrapedReviewer,
     review = scrapedReview,
     date = scrapedDate,
-    ratings = scrapedRating,
-    type_of_purchase = scrapedType
+    ratings = scrapedRating
   ))
 
 }
 
-View(movie32)
+#View(movie32)
 
-```
 
-movie33
-```{r}
+#movie33
+
 
 library(dplyr)
 library(rvest)
@@ -1505,7 +1431,6 @@ for (page in 3:7) {
   scrapedReview <- scrapeNodes("span.spoiler-warning, div.content:nth-of-type(3) div.text")[1:10]
   scrapedDate <- scrapeNodes("span.review-date")[1:10]
   scrapedRating <- scrapeNodes(".collapsable div.ipl-ratings-bar")[1:10]
-  scrapedType <- scrapeNodes("span.a-size-mini.a-color-state.a-text-bold")[1:10]
 
 
 movie33 <- rbind(movie33, data.frame(
@@ -1514,18 +1439,16 @@ movie33 <- rbind(movie33, data.frame(
     reviewer = scrapedReviewer,
     review = scrapedReview,
     date = scrapedDate,
-    ratings = scrapedRating,
-    type_of_purchase = scrapedType
+    ratings = scrapedRating
   ))
 
 }
 
-View(movie33)
+#View(movie33)
 
-```
 
-movie34
-```{r}
+
+#movie34
 
 library(dplyr)
 library(rvest)
@@ -1551,8 +1474,6 @@ for (page in 3:7) {
   scrapedReview <- scrapeNodes("span.spoiler-warning, div.content:nth-of-type(3) div.text")[1:10]
   scrapedDate <- scrapeNodes("span.review-date")[1:10]
   scrapedRating <- scrapeNodes(".collapsable div.ipl-ratings-bar")[1:10]
-  scrapedType <- scrapeNodes("span.a-size-mini.a-color-state.a-text-bold")[1:10]
-
 
 movie34 <- rbind(movie34, data.frame(
     movie_name = movieName,
@@ -1560,18 +1481,17 @@ movie34 <- rbind(movie34, data.frame(
     reviewer = scrapedReviewer,
     review = scrapedReview,
     date = scrapedDate,
-    ratings = scrapedRating,
-    type_of_purchase = scrapedType
+    ratings = scrapedRating
   ))
 
 }
 
-View(movie34)
+#View(movie34)
 
-```
 
-movie35
-```{r}
+
+#movie35
+
 
 library(dplyr)
 library(rvest)
@@ -1597,8 +1517,6 @@ for (page in 3:7) {
   scrapedReview <- scrapeNodes("span.spoiler-warning, div.content:nth-of-type(3) div.text")[1:10]
   scrapedDate <- scrapeNodes("span.review-date")[1:10]
   scrapedRating <- scrapeNodes(".collapsable div.ipl-ratings-bar")[1:10]
-  scrapedType <- scrapeNodes("span.a-size-mini.a-color-state.a-text-bold")[1:10]
-
 
 movie35 <- rbind(movie35, data.frame(
     movie_name = movieName,
@@ -1606,18 +1524,16 @@ movie35 <- rbind(movie35, data.frame(
     reviewer = scrapedReviewer,
     review = scrapedReview,
     date = scrapedDate,
-    ratings = scrapedRating,
-    type_of_purchase = scrapedType
+    ratings = scrapedRating
   ))
 
 }
 
-View(movie35)
+#View(movie35)
 
-```
-Movie 36
 
-```{r}
+#Movie 36
+
 
 library(dplyr)
 library(rvest)
@@ -1643,28 +1559,25 @@ for (page in 3:7) {
   scrapedReview <- scrapeNodes("div.collapsable:nth-of-type(n+2) div.text, div:nth-of-type(n+15) span.spoiler-warning")[1:10]
   scrapedDate <- scrapeNodes("div.display-name-date:nth-of-type(2) span.review-date")[1:10]
   scrapedRating <- scrapeNodes("div.ipl-ratings-bar")[1:10]
-  scrapedType <- scrapeNodes(".sc-ab73d3b3-1 a.ipc-metadata-list-item__list-content-item")[1:10]
 
 movie36 <- rbind(movie36, data.frame(
-    movie_name = MovieName,
+    movie_name = movieName,
     title = scrapedTitle,
     reviewer = scrapedReviewer,
     review = scrapedReview,
     date = scrapedDate,
-    ratings = scrapedRating,
-    type_of_movie= scrapedType
+    ratings = scrapedRating
   ))
 
   
 }
 
-View(movie36)
+#View(movie36)
 
-```
 
-Movie 37
+#Movie 37
 
-```{r}
+
 
 library(dplyr)
 library(rvest)
@@ -1690,28 +1603,26 @@ for (page in 1:5) {
   scrapedReview <- scrapeNodes("div.collapsable:nth-of-type(n+2) div.text, div:nth-of-type(n+15) span.spoiler-warning")[1:10]
   scrapedDate <- scrapeNodes("div.display-name-date:nth-of-type(2) span.review-date")[1:10]
   scrapedRating <- scrapeNodes("div.ipl-ratings-bar")[1:10]
-  scrapedType <- scrapeNodes(".sc-ab73d3b3-1 a.ipc-metadata-list-item__list-content-item")[1:10]
-
+  
 movie37 <- rbind(movie37, data.frame(
-    movie_name = MovieName,
+    movie_name = movieName,
     title = scrapedTitle,
     reviewer = scrapedReviewer,
     review = scrapedReview,
     date = scrapedDate,
-    ratings = scrapedRating,
-    type_of_movie= scrapedType
+    ratings = scrapedRating
   ))
 
   
 }
 
-View(movie37)
+#View(movie37)
 
-```
 
-movie38
 
-```{r}
+#movie38
+
+
 
 library(dplyr)
 library(rvest)
@@ -1737,28 +1648,26 @@ for (page in 1:5) {
   scrapedReview <- scrapeNodes("div.collapsable:nth-of-type(n+2) div.text, div:nth-of-type(n+15) span.spoiler-warning")[1:10]
   scrapedDate <- scrapeNodes("div.display-name-date:nth-of-type(2) span.review-date")[1:10]
   scrapedRating <- scrapeNodes("div.ipl-ratings-bar")[1:10]
-  scrapedType <- scrapeNodes(".sc-ab73d3b3-1 a.ipc-metadata-list-item__list-content-item")[1:10]
 
 movie38 <- rbind(movie38, data.frame(
-    movie_name = MovieName,
+    movie_name = movieName,
     title = scrapedTitle,
     reviewer = scrapedReviewer,
     review = scrapedReview,
     date = scrapedDate,
-    ratings = scrapedRating,
-    type_of_movie= scrapedType
+    ratings = scrapedRating
   ))
 
   
 }
 
-View(movie38)
+#View(movie38)
 
-```
 
-movie39
 
-```{r}
+#movie39
+
+
 
 library(dplyr)
 library(rvest)
@@ -1784,29 +1693,27 @@ for (page in 1:5) {
   scrapedReview <- scrapeNodes("div.collapsable:nth-of-type(n+2) div.text, div:nth-of-type(n+15) span.spoiler-warning")[1:10]
   scrapedDate <- scrapeNodes("div.display-name-date:nth-of-type(2) span.review-date")[1:10]
   scrapedRating <- scrapeNodes("div.ipl-ratings-bar")[1:10]
-  scrapedType <- scrapeNodes(".sc-ab73d3b3-1 a.ipc-metadata-list-item__list-content-item")[1:10]
-
+  
 movie39 <- rbind(movie39, data.frame(
-    movie_name = MovieName,
+    movie_name = movieName,
     title = scrapedTitle,
     reviewer = scrapedReviewer,
     review = scrapedReview,
     date = scrapedDate,
-    ratings = scrapedRating,
-    type_of_movie= scrapedType
+    ratings = scrapedRating
   ))
 
   
 }
 
-View(movie39)
-
-```
+#View(movie39)
 
 
-movie40
 
-```{r}
+
+#movie40
+
+
 
 library(dplyr)
 library(rvest)
@@ -1832,28 +1739,25 @@ for (page in 1:5) {
   scrapedReview <- scrapeNodes("div.collapsable:nth-of-type(n+2) div.text, div:nth-of-type(n+15) span.spoiler-warning")[1:10]
   scrapedDate <- scrapeNodes("div.display-name-date:nth-of-type(2) span.review-date")[1:10]
   scrapedRating <- scrapeNodes("div.ipl-ratings-bar")[1:10]
-  scrapedType <- scrapeNodes(".sc-ab73d3b3-1 a.ipc-metadata-list-item__list-content-item")[1:10]
-
+  
 movie40 <- rbind(movie40, data.frame(
-    movie_name = MovieName,
+    movie_name = movieName,
     title = scrapedTitle,
     reviewer = scrapedReviewer,
     review = scrapedReview,
     date = scrapedDate,
-    ratings = scrapedRating,
-    type_of_movie= scrapedType
+    ratings = scrapedRating
   ))
 
   
 }
 
-View(movie40)
+#View(movie40)
 
-```
 
-movie41
 
-```{r}
+#movie41
+
 
 library(dplyr)
 library(rvest)
@@ -1879,28 +1783,26 @@ for (page in 1:5) {
   scrapedReview <- scrapeNodes("div.collapsable:nth-of-type(n+2) div.text, div:nth-of-type(n+15) span.spoiler-warning")[1:10]
   scrapedDate <- scrapeNodes("div.display-name-date:nth-of-type(2) span.review-date")[1:10]
   scrapedRating <- scrapeNodes("div.ipl-ratings-bar")[1:10]
-  scrapedType <- scrapeNodes(".sc-ab73d3b3-1 a.ipc-metadata-list-item__list-content-item")[1:10]
-
+  
 movie41 <- rbind(movie41, data.frame(
-    movie_name = MovieName,
+    movie_name = movieName,
     title = scrapedTitle,
     reviewer = scrapedReviewer,
     review = scrapedReview,
     date = scrapedDate,
-    ratings = scrapedRating,
-    type_of_movie= scrapedType
+    ratings = scrapedRating
   ))
 
   
 }
 
-View(movie41)
+#View(movie41)
 
-```
 
-movie42
 
-```{r}
+#movie42
+
+
 
 library(dplyr)
 library(rvest)
@@ -1926,28 +1828,27 @@ for (page in 1:5) {
   scrapedReview <- scrapeNodes("div.collapsable:nth-of-type(n+2) div.text, div:nth-of-type(n+15) span.spoiler-warning")[1:10]
   scrapedDate <- scrapeNodes("div.display-name-date:nth-of-type(2) span.review-date")[1:10]
   scrapedRating <- scrapeNodes("div.ipl-ratings-bar")[1:10]
-  scrapedType <- scrapeNodes(".sc-ab73d3b3-1 a.ipc-metadata-list-item__list-content-item")[1:10]
+  
 
 movie42 <- rbind(movie42, data.frame(
-    movie_name = MovieName,
+    movie_name = movieName,
     title = scrapedTitle,
     reviewer = scrapedReviewer,
     review = scrapedReview,
     date = scrapedDate,
-    ratings = scrapedRating,
-    type_of_movie= scrapedType
+    ratings = scrapedRating
   ))
 
   
 }
 
-View(movie42)
+#View(movie42)
 
-```
 
-movie43
 
-```{r}
+#movie43
+
+
 
 library(dplyr)
 library(rvest)
@@ -1973,28 +1874,27 @@ for (page in 1:5) {
   scrapedReview <- scrapeNodes("div.collapsable:nth-of-type(n+2) div.text, div:nth-of-type(n+15) span.spoiler-warning")[1:10]
   scrapedDate <- scrapeNodes("div.display-name-date:nth-of-type(2) span.review-date")[1:10]
   scrapedRating <- scrapeNodes("div.ipl-ratings-bar")[1:10]
-  scrapedType <- scrapeNodes(".sc-ab73d3b3-1 a.ipc-metadata-list-item__list-content-item")[1:10]
+  
 
 movie43 <- rbind(movie43, data.frame(
-    movie_name = MovieName,
+    movie_name = movieName,
     title = scrapedTitle,
     reviewer = scrapedReviewer,
     review = scrapedReview,
     date = scrapedDate,
-    ratings = scrapedRating,
-    type_of_movie= scrapedType
+    ratings = scrapedRating
   ))
 
   
 }
 
-View(movie43)
+#View(movie43)
 
-```
 
-movie44
 
-```{r}
+#movie44
+
+
 
 library(dplyr)
 library(rvest)
@@ -2020,28 +1920,27 @@ for (page in 1:5) {
   scrapedReview <- scrapeNodes("div.collapsable:nth-of-type(n+2) div.text, div:nth-of-type(n+15) span.spoiler-warning")[1:10]
   scrapedDate <- scrapeNodes("div.display-name-date:nth-of-type(2) span.review-date")[1:10]
   scrapedRating <- scrapeNodes("div.ipl-ratings-bar")[1:10]
-  scrapedType <- scrapeNodes(".sc-ab73d3b3-1 a.ipc-metadata-list-item__list-content-item")[1:10]
+  
 
 movie44 <- rbind(movie44, data.frame(
-    movie_name = MovieName,
+    movie_name = movieName,
     title = scrapedTitle,
     reviewer = scrapedReviewer,
     review = scrapedReview,
     date = scrapedDate,
-    ratings = scrapedRating,
-    type_of_movie= scrapedType
+    ratings = scrapedRating
   ))
 
   
 }
 
-View(movie44)
+#View(movie44)
 
-```
 
-movie45
 
-```{r}
+#movie45
+
+
 
 library(dplyr)
 library(rvest)
@@ -2067,28 +1966,26 @@ for (page in 1:5) {
   scrapedReview <- scrapeNodes("div.collapsable:nth-of-type(n+2) div.text, div:nth-of-type(n+15) span.spoiler-warning")[1:10]
   scrapedDate <- scrapeNodes("div.display-name-date:nth-of-type(2) span.review-date")[1:10]
   scrapedRating <- scrapeNodes("div.ipl-ratings-bar")[1:10]
-  scrapedType <- scrapeNodes(".sc-ab73d3b3-1 a.ipc-metadata-list-item__list-content-item")[1:10]
-
+  
 movie45 <- rbind(movie45, data.frame(
-    movie_name = MovieName,
+    movie_name = movieName,
     title = scrapedTitle,
     reviewer = scrapedReviewer,
     review = scrapedReview,
     date = scrapedDate,
-    ratings = scrapedRating,
-    type_of_movie= scrapedType
+    ratings = scrapedRating
   ))
 
   
 }
 
-View(movie45)
+#View(movie45)
 
-```
 
-movie46
 
-```{r}
+#movie46
+
+
 
 library(dplyr)
 library(rvest)
@@ -2114,28 +2011,27 @@ for (page in 1:5) {
   scrapedReview <- scrapeNodes("div.collapsable:nth-of-type(n+2) div.text, div:nth-of-type(n+15) span.spoiler-warning")[1:10]
   scrapedDate <- scrapeNodes("div.display-name-date:nth-of-type(2) span.review-date")[1:10]
   scrapedRating <- scrapeNodes("div.ipl-ratings-bar")[1:10]
-  scrapedType <- scrapeNodes(".sc-ab73d3b3-1 a.ipc-metadata-list-item__list-content-item")[1:10]
+  
 
 movie46 <- rbind(movie46, data.frame(
-    movie_name = MovieName,
+    movie_name = movieName,
     title = scrapedTitle,
     reviewer = scrapedReviewer,
     review = scrapedReview,
     date = scrapedDate,
-    ratings = scrapedRating,
-    type_of_movie= scrapedType
+    ratings = scrapedRating
   ))
 
   
 }
 
-View(movie46)
+#View(movie46)
 
-```
 
-movie47
 
-```{r}
+#movie47
+
+
 
 library(dplyr)
 library(rvest)
@@ -2161,28 +2057,27 @@ for (page in 1:5) {
   scrapedReview <- scrapeNodes("div.collapsable:nth-of-type(n+2) div.text, div:nth-of-type(n+15) span.spoiler-warning")[1:10]
   scrapedDate <- scrapeNodes("div.display-name-date:nth-of-type(2) span.review-date")[1:10]
   scrapedRating <- scrapeNodes("div.ipl-ratings-bar")[1:10]
-  scrapedType <- scrapeNodes(".sc-ab73d3b3-1 a.ipc-metadata-list-item__list-content-item")[1:10]
+  
 
 movie47 <- rbind(movie47, data.frame(
-    movie_name = MovieName,
+    movie_name = movieName,
     title = scrapedTitle,
     reviewer = scrapedReviewer,
     review = scrapedReview,
     date = scrapedDate,
-    ratings = scrapedRating,
-    type_of_movie= scrapedType
+    ratings = scrapedRating
   ))
 
   
 }
 
-View(movie47)
+#View(movie47)
 
-```
 
-movie48
 
-```{r}
+#movie48
+
+
 
 library(dplyr)
 library(rvest)
@@ -2208,28 +2103,25 @@ for (page in 1:5) {
   scrapedReview <- scrapeNodes("div.collapsable:nth-of-type(n+2) div.text, div:nth-of-type(n+15) span.spoiler-warning")[1:10]
   scrapedDate <- scrapeNodes("div.display-name-date:nth-of-type(2) span.review-date")[1:10]
   scrapedRating <- scrapeNodes("div.ipl-ratings-bar")[1:10]
-  scrapedType <- scrapeNodes(".sc-ab73d3b3-1 a.ipc-metadata-list-item__list-content-item")[1:10]
+  
 
 movie48 <- rbind(movie48, data.frame(
-    movie_name = MovieName,
+    movie_name = movieName,
     title = scrapedTitle,
     reviewer = scrapedReviewer,
     review = scrapedReview,
     date = scrapedDate,
-    ratings = scrapedRating,
-    type_of_movie= scrapedType
+    ratings = scrapedRating
   ))
 
   
 }
 
-View(movie48)
+#View(movie48)
 
-```
 
-movie49
+#movie49
 
-```{r}
 
 library(dplyr)
 library(rvest)
@@ -2255,28 +2147,26 @@ for (page in 1:5) {
   scrapedReview <- scrapeNodes("div.collapsable:nth-of-type(n+2) div.text, div:nth-of-type(n+15) span.spoiler-warning")[1:10]
   scrapedDate <- scrapeNodes("div.display-name-date:nth-of-type(2) span.review-date")[1:10]
   scrapedRating <- scrapeNodes("div.ipl-ratings-bar")[1:10]
-  scrapedType <- scrapeNodes(".sc-ab73d3b3-1 a.ipc-metadata-list-item__list-content-item")[1:10]
+  
 
 movie49 <- rbind(movie49, data.frame(
-    movie_name = MovieName,
+    movie_name = movieName,
     title = scrapedTitle,
     reviewer = scrapedReviewer,
     review = scrapedReview,
     date = scrapedDate,
-    ratings = scrapedRating,
-    type_of_movie= scrapedType
+    ratings = scrapedRating
   ))
 
   
 }
 
-View(movie49)
+#View(movie49)
 
-```
 
-movie50
+#movie50
 
-```{r}
+
 
 library(dplyr)
 library(rvest)
@@ -2299,32 +2189,25 @@ for (page in 1:5) {
   MovieName <- "Miller's Girl (2024)"
   scrapedTitle <- scrapeNodes("a.title")[1:10]
   scrapedReviewer <- scrapeNodes("div.display-name-date:nth-of-type(2) a")[1:10]
-  scrapedReview <- scrapeNodes("div.collapsable:nth-of-type(n+2) div.text, div:nth-of-type(n+15) span.spoiler-warning")[1:10]
+  scrapedReview <- scrapeNodes("div.collapsable:nth-of-type(n+11) div.text")[1:10]
   scrapedDate <- scrapeNodes("div.display-name-date:nth-of-type(2) span.review-date")[1:10]
   scrapedRating <- scrapeNodes("div.ipl-ratings-bar")[1:10]
-  scrapedType <- scrapeNodes(".sc-ab73d3b3-1 a.ipc-metadata-list-item__list-content-item")[1:10]
-
+  
 movie50 <- rbind(movie50, data.frame(
     movie_name = MovieName,
     title = scrapedTitle,
     reviewer = scrapedReviewer,
     review = scrapedReview,
     date = scrapedDate,
-    ratings = scrapedRating,
-    type_of_movie= scrapedType
-    
+    ratings = scrapedRating
   ))
 
-  
 }
 
-View(movie50)
+#View(movie50)
 
-```
-
-```{r}
 all_movies <- data.frame()
-col_names <- c("Movie Title", "Review Title", "Reviewer", "Review", "Date", "Ratings", "Type Of Movies")
+col_names <- c("Movie Title", "Review Title", "Reviewer", "Review", "Date", "Ratings")
 for (i in 1:50) {
   assign(paste0("movie", i), `colnames<-`(get(paste0("movie", i)), col_names))
   all_movies <- rbind(all_movies, get(paste0("movie", i)))
@@ -2333,8 +2216,5 @@ View(all_movies)
 tail(all_movies)
 write.csv(all_movies, file= "AllMovies.csv",)
 
+
 ```
-
-
-
-
