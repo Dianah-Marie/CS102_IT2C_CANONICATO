@@ -1,8 +1,10 @@
 ---
-title: "Activity 3"
+title: "Activity 2"
 author: "Dianah Marie Canonicato"
-date: "2024-02-29"
-output: html_document
+date: "2024-03-17"
+output:
+  pdf_document: default
+  html_document: default
 ---
 
 ```{r setup, include=FALSE}
@@ -17,7 +19,7 @@ install.packages("polite")
 SCRAPING FOR 50
 
 Movie 1
-```{r, warning=FALSE}
+```{r}
 
 library(dplyr)
 library(rvest)
@@ -59,10 +61,11 @@ movie1 <- rbind(movie1, data.frame(
 
 #View(movie1)
 
-
+```
 
 #Movie2
 
+```{r}
 library(dplyr)
 library(rvest)
 library(polite)
@@ -102,12 +105,12 @@ for (page in 1:5) {
 
 #View(movie2)
 
-
+```
 
 
 #movie3
 
-
+```{r}
 library(dplyr)
 library(rvest)
 library(polite)
@@ -148,12 +151,12 @@ for (page in 1:5) {
 
 #View(movie3)
 
-
+```
 
 
 #Movie 4
 
-
+```{r}
 library(dplyr)
 library(rvest)
 library(polite)
@@ -194,12 +197,12 @@ for (page in 1:5) {
 
 #View(movie4)
 
-
+```
 
 
 #Movie 5
 
-
+```{r}
 library(dplyr)
 library(rvest)
 library(polite)
@@ -238,11 +241,11 @@ for (page in 1:5) {
 }
 
 #View(movie5)
-
+```
 
 
 #Movie 6
-
+```{r}
 
 library(dplyr)
 library(rvest)
@@ -280,15 +283,14 @@ for (page in 3:7) {
   ))
 
  
-
-  
 }
 
 #View(movie6)
+```
 
 #Movie7
 
-
+```{r}
 library(dplyr)
 library(rvest)
 library(polite)
@@ -327,10 +329,10 @@ for (page in 3:7) {
 
 #View(movie7)
 
-
+```
 
 #Movie 8
-
+```{r}
 
 library(dplyr)
 library(rvest)
@@ -369,10 +371,10 @@ for (page in 3:7) {
 }
 
 #View(movie8)
-
+```
 
 #Movie9
-
+```{r}
 library(dplyr)
 library(rvest)
 library(polite)
@@ -411,10 +413,10 @@ movie9 <- rbind(movie9, data.frame(
 }
 
 #View(movie9)
-
+```
 
 #Movie10
-
+```{r}
 library(dplyr)
 library(rvest)
 library(polite)
@@ -454,9 +456,10 @@ for (page in 6:10) {
 }
 
 #View(movie10)
+```
 
 #Movie11
-
+```{r}
 library(dplyr)
 library(rvest)
 library(polite)
@@ -496,10 +499,11 @@ movie11 <- rbind(movie11, data.frame(
 }
 
 #View(movie11)
+```
 
 
 #Movie12
-
+```{r}
 library(dplyr)
 library(rvest)
 library(polite)
@@ -541,7 +545,10 @@ movie12 <- rbind(movie12, data.frame(
 
 #View(movie12)
 
+```
+
 #Movie13
+```{r}
 
 library(dplyr)
 library(rvest)
@@ -582,10 +589,10 @@ movie13 <- rbind(movie13, data.frame(
 }
 
 #View(movie13)
-
+```
 
 #Movie14
-
+```{r}
 library(dplyr)
 library(rvest)
 library(polite)
@@ -625,9 +632,11 @@ movie14 <- rbind(movie14, data.frame(
 
 #View(movie14)
 
-
+```
 
 #Movie15
+
+```{r}
 library(dplyr)
 library(rvest)
 library(polite)
@@ -667,10 +676,10 @@ movie15 <- rbind(movie15, data.frame(
 
 #View(movie15)
 
-
+```
 
 #Movie16
-
+```{r}
 library(dplyr)
 library(rvest)
 library(polite)
@@ -709,11 +718,12 @@ movie16 <- rbind(movie16, data.frame(
 }
 
 #View(movie16)
-
+```
 
 
 
 #Movie17
+```{r}
 library(dplyr)
 library(rvest)
 library(polite)
@@ -754,10 +764,11 @@ movie17 <- rbind(movie17, data.frame(
 
 #View(movie17)
 
-
+```
 
 
 #Movie18
+```{r}
 library(dplyr)
 library(rvest)
 library(polite)
@@ -797,9 +808,11 @@ movie18 <- rbind(movie18, data.frame(
 
 #View(movie18)
 
+```
 
 
 #Movie19
+```{r}
 library(dplyr)
 library(rvest)
 library(polite)
@@ -838,10 +851,10 @@ movie19 <- rbind(movie19, data.frame(
 }
 
 #View(movie19)
-
+```
 
 #Movie20
-
+```{r}
 
 library(dplyr)
 library(rvest)
@@ -881,9 +894,10 @@ movie20 <- rbind(movie20, data.frame(
 }
 
 #View(movie20)
+```
 
 #Movie21
-
+```{r}
 
 library(dplyr)
 library(rvest)
@@ -925,8 +939,10 @@ movie21 <- rbind(movie21, data.frame(
 
 #View(movie21)
 
+```
 
 #Movie22
+```{r}
 library(dplyr)
 library(rvest)
 library(polite)
@@ -966,10 +982,10 @@ movie22 <- rbind(movie22, data.frame(
 
 #View(movie22)
 
-
+```
 
 #movie23
-
+```{r}
 
 library(dplyr)
 library(rvest)
@@ -1011,10 +1027,10 @@ movie23 <- rbind(movie23, data.frame(
 
 #View(movie23)
 
-
+```
 
 #movie24
-
+```{r}
 
 library(dplyr)
 library(rvest)
@@ -1056,10 +1072,10 @@ movie24 <- rbind(movie24, data.frame(
 
 #View(movie24)
 
-
+```
 
 #movie25
-
+```{r}
 
 library(dplyr)
 library(rvest)
@@ -1099,10 +1115,10 @@ movie25 <- rbind(movie25, data.frame(
 }
 
 #View(movie25)
-
+```
 
 #movie26
-
+```{r}
 
 library(dplyr)
 library(rvest)
@@ -1144,10 +1160,10 @@ movie26 <- rbind(movie26, data.frame(
 
 #View(movie26)
 
-
+```
 
 #movie27
-
+```{r}
 library(dplyr)
 library(rvest)
 library(polite)
@@ -1186,10 +1202,10 @@ movie27 <- rbind(movie27, data.frame(
 }
 
 #View(movie27)
-
+```
 
 #movie28
-
+```{r}
 
 library(dplyr)
 library(rvest)
@@ -1229,10 +1245,10 @@ movie28 <- rbind(movie28, data.frame(
 
 #View(movie28)
 
-
+```
 
 #movie29
-
+```{r}
 library(dplyr)
 library(rvest)
 library(polite)
@@ -1272,10 +1288,10 @@ movie29 <- rbind(movie29, data.frame(
 
 #View(movie29)
 
-
+```
 
 #movie30
-
+```{r}
 
 library(dplyr)
 library(rvest)
@@ -1316,10 +1332,11 @@ movie30 <- rbind(movie30, data.frame(
 
 #View(movie30)
 
+```
 
 
 #movie31
-
+```{r}
 
 library(dplyr)
 library(rvest)
@@ -1360,10 +1377,10 @@ movie31 <- rbind(movie31, data.frame(
 
 #View(movie31)
 
-
+```
 
 #movie32
-
+```{r}
 
 library(dplyr)
 library(rvest)
@@ -1403,9 +1420,9 @@ movie32 <- rbind(movie32, data.frame(
 
 #View(movie32)
 
-
+```
 #movie33
-
+```{r}
 
 library(dplyr)
 library(rvest)
@@ -1445,11 +1462,11 @@ movie33 <- rbind(movie33, data.frame(
 }
 
 #View(movie33)
-
+```
 
 
 #movie34
-
+```{r}
 library(dplyr)
 library(rvest)
 library(polite)
@@ -1488,10 +1505,10 @@ movie34 <- rbind(movie34, data.frame(
 
 #View(movie34)
 
-
+```
 
 #movie35
-
+```{r}
 
 library(dplyr)
 library(rvest)
@@ -1530,10 +1547,10 @@ movie35 <- rbind(movie35, data.frame(
 }
 
 #View(movie35)
-
+```
 
 #Movie 36
-
+```{r}
 
 library(dplyr)
 library(rvest)
@@ -1574,9 +1591,10 @@ movie36 <- rbind(movie36, data.frame(
 
 #View(movie36)
 
+```
 
 #Movie 37
-
+```{r}
 
 
 library(dplyr)
@@ -1618,10 +1636,12 @@ movie37 <- rbind(movie37, data.frame(
 
 #View(movie37)
 
+```
+
 
 
 #movie38
-
+```{r}
 
 
 library(dplyr)
@@ -1662,11 +1682,11 @@ movie38 <- rbind(movie38, data.frame(
 }
 
 #View(movie38)
-
+```
 
 
 #movie39
-
+```{r}
 
 
 library(dplyr)
@@ -1707,12 +1727,12 @@ movie39 <- rbind(movie39, data.frame(
 }
 
 #View(movie39)
-
+```
 
 
 
 #movie40
-
+```{r}
 
 
 library(dplyr)
@@ -1754,10 +1774,10 @@ movie40 <- rbind(movie40, data.frame(
 
 #View(movie40)
 
-
+```
 
 #movie41
-
+```{r}
 
 library(dplyr)
 library(rvest)
@@ -1777,14 +1797,14 @@ for (page in 1:5) {
       html_text(trim = TRUE)
   }
 
-  MovieName <- "Anatomy of a Fall (2023)"
+  movieName <- "Anatomy of a Fall (2023)"
   scrapedTitle <- scrapeNodes("a.title")[1:10]
   scrapedReviewer <- scrapeNodes("div.display-name-date:nth-of-type(2) a")[1:10]
-  scrapedReview <- scrapeNodes("div.collapsable:nth-of-type(n+2) div.text, div:nth-of-type(n+15) span.spoiler-warning")[1:10]
+  scrapedReview <- scrapeNodes("div.collapsable.review-container:nth-of-type(n+2) div.text, div:nth-of-type(n+15) span.selectable-text")[1:10]
   scrapedDate <- scrapeNodes("div.display-name-date:nth-of-type(2) span.review-date")[1:10]
-  scrapedRating <- scrapeNodes("div.ipl-ratings-bar")[1:10]
-  
-movie41 <- rbind(movie41, data.frame(
+  scrapedRating <- scrapeNodes("div.rating-other-user-rating")[1:10]
+
+  movie41 <- rbind(movie41, data.frame(
     movie_name = movieName,
     title = scrapedTitle,
     reviewer = scrapedReviewer,
@@ -1792,16 +1812,15 @@ movie41 <- rbind(movie41, data.frame(
     date = scrapedDate,
     ratings = scrapedRating
   ))
-
-  
 }
 
 #View(movie41)
 
+```
 
 
 #movie42
-
+```{r}
 
 
 library(dplyr)
@@ -1844,10 +1863,10 @@ movie42 <- rbind(movie42, data.frame(
 
 #View(movie42)
 
-
+```
 
 #movie43
-
+```{r}
 
 
 library(dplyr)
@@ -1890,11 +1909,11 @@ movie43 <- rbind(movie43, data.frame(
 
 #View(movie43)
 
-
+```
 
 #movie44
 
-
+```{r}
 
 library(dplyr)
 library(rvest)
@@ -1936,11 +1955,11 @@ movie44 <- rbind(movie44, data.frame(
 
 #View(movie44)
 
-
+```
 
 #movie45
 
-
+```{r}
 
 library(dplyr)
 library(rvest)
@@ -1981,11 +2000,11 @@ movie45 <- rbind(movie45, data.frame(
 
 #View(movie45)
 
-
+```
 
 #movie46
 
-
+```{r}
 
 library(dplyr)
 library(rvest)
@@ -2027,10 +2046,10 @@ movie46 <- rbind(movie46, data.frame(
 
 #View(movie46)
 
-
+```
 
 #movie47
-
+```{r}
 
 
 library(dplyr)
@@ -2073,10 +2092,10 @@ movie47 <- rbind(movie47, data.frame(
 
 #View(movie47)
 
-
+```
 
 #movie48
-
+```{r}
 
 
 library(dplyr)
@@ -2118,10 +2137,10 @@ movie48 <- rbind(movie48, data.frame(
 }
 
 #View(movie48)
-
+```
 
 #movie49
-
+```{r}
 
 library(dplyr)
 library(rvest)
@@ -2162,11 +2181,11 @@ movie49 <- rbind(movie49, data.frame(
 }
 
 #View(movie49)
-
+```
 
 #movie50
 
-
+```{r}
 
 library(dplyr)
 library(rvest)
@@ -2205,6 +2224,10 @@ movie50 <- rbind(movie50, data.frame(
 }
 
 #View(movie50)
+
+```
+
+```{r}
 
 all_movies <- data.frame()
 col_names <- c("Movie Title", "Review Title", "Reviewer", "Review", "Date", "Ratings")
